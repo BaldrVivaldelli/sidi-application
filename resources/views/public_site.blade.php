@@ -956,12 +956,14 @@ width: 29%;
         window.ws.onmessage = function(e) {
             console.log('llego algo');
             var response = JSON.parse(e.data);
+            console.log('el numero de session es el siguiente : ' + response.numero_session);
             console.log(response);
             switch (response.type) {
                 case "snapshot":
                     console.log('volvio el contenido ')
                     console.log(e)
                     var json = JSON.parse(e.data);
+                    
                     if(json.archivo_nombre.includes("--CONTIENE DATO TEXTO--")){
                         var textValue = json.archivo_nombre.replace("--CONTIENE DATO TEXTO--","");                        
                         var section = document.createElement('section')
@@ -1022,6 +1024,7 @@ width: 29%;
                     
                     var json = JSON.parse(e.data);                    
                     console.log('se actualizo el contenido ')
+                    dataMc = response.nombreContenido;
                     cuadrosActuales++;
 
                     var numeroParse;

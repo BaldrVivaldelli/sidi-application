@@ -8,7 +8,7 @@
         <div class="inner">
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo"><strong>Crear Contenido</strong></a>
+                <a href="/content/create" class="logo"><strong>Crear Contenido</strong></a>
             </header>
             <!-- Form -->
             <h3></h3>
@@ -22,11 +22,11 @@
                         <input type="text" name="content-name" id="content-name" placeholder="Nombre del contenido" />
                     </div>
                     <div class="col-2 col-2-small">
-                        <input type="radio" id="deshabilitada" name="estado-contenido">
+                        <input type="radio" id="deshabilitada"  value="off" name="estado-contenido">
                         <label for="deshabilitada">Deshabilitada</label>
                     </div>
                     <div class="col-2 col-2-small">
-                        <input type="radio" id="habilitada" name="estado-contenido" />
+                        <input type="radio" id="habilitada"  value="on" name="estado-contenido" />
                         <label for="habilitada">Habilitada</label>
                     </div>
                 </div>

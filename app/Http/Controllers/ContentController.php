@@ -926,7 +926,7 @@ class ContentController extends Controller
 
 
     public function showByName($name)
-    {
+    {        
         $idRegion = DB::table('contenidos')->where('nombre', '=', $name)->value('id');
         $nombreRegion = $name;
         $auxDispositivosAsociadosAlaRegion = DB::table('clientes')->where('id_contenido', $idRegion)->get();
@@ -1092,7 +1092,7 @@ class ContentController extends Controller
                             return  $return;
                         }
                     } else {
-                        if ($request['regionTresDetalleUno'] == "default") {
+                        if ($request['regionUnoDetalleUno'] == "default") {
                             $return["value"] = false;
                             $return["desc"] = 'Datos sin cargar para el template selecionado';
                             return $return;
@@ -1106,12 +1106,29 @@ class ContentController extends Controller
                         $return["desc"] = 'Archivo imagen vacio';
                         return  $return;
                     }
-                } else if ($request['regionUnoDetalleUno'] == "video") {
+                    if ($request->file('file-seccion-una-a') != null) {
+                        if (($request->file('file-seccion-una-a')->getMimeType() != "image/jpeg") &&
+                            ($request->file('file-seccion-una-a')->getMimeType() != "image/png")  &&
+                            ($request->file('file-seccion-una-a')->getMimeType() != "image/jpg") 
+                            ){                    
+                            $return["value"] = false;
+                            $return["desc"] = 'Archivo imagen solo en JPEG, PNG o JPG';
+                            return  $return;                        
+                        }
+                    }
+                } else if ($request['regionUnoDetalleUno'] == "video") {                    
                     if ($request->file('file-seccion-una-a-upload-manual') == null && $request['file-seccion-una-a-url'] == null) {
                         $return["value"] = false;
                         $return["desc"] = 'Archivo Video o Link de youtube vacio';
                         return  $return;
+                    }else if ($request->file('file-seccion-una-a-upload-manual') != null){
+                        if($request->file('file-seccion-una-a-upload-manual')->getMimeType() !="video/mp4"){                            
+                            $return["value"] = false;
+                            $return["desc"] = 'Solo se permite video/mp4 en videos subidos manual';
+                            return $return;
+                        }
                     }
+                    
                     if ($request['file-seccion-una-a-url'] != null) {
                         $contains = Str::contains($request['file-seccion-una-a-url'], ['www.youtube.com/embed/']);
                         if ($contains == false) {
@@ -1153,7 +1170,6 @@ class ContentController extends Controller
                 }
                 break;
             case "3":
-
                 // ['regionTresDetalleDos']
                 // ['regionTresDetalleTres']
                 // REGION TRES
@@ -1190,12 +1206,29 @@ class ContentController extends Controller
                         $return["desc"] = 'Archivo imagen vacio';
                         return  $return;
                     }
+                    if($request->file('file-seccion-tres-a') != null){
+                        if (($request->file('file-seccion-tres-a')->getMimeType() != "image/jpeg") &&
+                        ($request->file('file-seccion-tres-a')->getMimeType() != "image/png")  &&
+                        ($request->file('file-seccion-tres-a')->getMimeType() != "image/jpg") 
+                        ){                    
+                            $return["value"] = false;
+                            $return["desc"] = 'Archivo imagen solo en JPEG, PNG o JPG';
+                            return  $return;                        
+                        }
+                    }
                 } else if ($request['regionTresDetalleUno'] == "video") {
                     if ($request->file('file-seccion-tres-a-upload-manual') == null && $request['file-seccion-tres-a-url'] == null) {
                         // return redirect("/content/create")->withErrors(['Archivo Video o Link de youtube vacio']);
                         $return["value"] = false;
                         $return["desc"] = 'Archivo Video o Link de youtube vacio';
                         return  $return;
+                    }
+                    if ($request->file('file-seccion-tres-a-upload-manual') != null){
+                        if($request->file('file-seccion-tres-a-upload-manual')->getMimeType() !="video/mp4"){                            
+                            $return["value"] = false;
+                            $return["desc"] = 'Solo se permite video/mp4 en videos subidos manual';
+                            return $return;
+                        }
                     }
                     if ($request['file-seccion-tres-a-url'] != null) {
                         $contains = Str::contains($request['file-seccion-tres-a-url'], ['www.youtube.com/embed/']);
@@ -1241,12 +1274,29 @@ class ContentController extends Controller
                         $return["desc"] = 'Archivo imagen vacio';
                         return  $return;
                     }
+                    if($request->file('file-seccion-tres-b') != null){
+                        if (($request->file('file-seccion-tres-b')->getMimeType() != "image/jpeg") &&
+                        ($request->file('file-seccion-tres-b')->getMimeType() != "image/png")  &&
+                        ($request->file('file-seccion-tres-b')->getMimeType() != "image/jpg") 
+                        ){                    
+                            $return["value"] = false;
+                            $return["desc"] = 'Archivo imagen solo en JPEG, PNG o JPG';
+                            return  $return;                        
+                        }
+                    }
                 } else if ($request['regionTresDetalleDos'] == "video") {
                     if ($request->file('file-seccion-tres-b-upload-manual') == null && $request['file-seccion-tres-b-url'] == null) {
                         // return redirect("/content/create")->withErrors(['Archivo Video o Link de youtube vacio']);
                         $return["value"] = false;
                         $return["desc"] = 'Archivo Video o Link de youtube vacio';
                         return  $return;
+                    }
+                    if ($request->file('file-seccion-tres-b-upload-manual') != null){
+                        if($request->file('file-seccion-tres-b-upload-manual')->getMimeType() !="video/mp4"){                            
+                            $return["value"] = false;
+                            $return["desc"] = 'Solo se permite video/mp4 en videos subidos manual';
+                            return $return;
+                        }
                     }
                     if ($request['file-seccion-tres-b-url'] != null) {
                         $contains = Str::contains($request['file-seccion-tres-b-url'], ['www.youtube.com/embed/']);
@@ -1290,12 +1340,29 @@ class ContentController extends Controller
                         $return["desc"] = 'Archivo imagen vacio';
                         return  $return;
                     }
+                    if($request->file('file-seccion-tres-c') != null){
+                        if (($request->file('file-seccion-tres-c')->getMimeType() != "image/jpeg") &&
+                        ($request->file('file-seccion-tres-c')->getMimeType() != "image/png")  &&
+                        ($request->file('file-seccion-tres-c')->getMimeType() != "image/jpg") 
+                        ){                    
+                            $return["value"] = false;
+                            $return["desc"] = 'Archivo imagen solo en JPEG, PNG o JPG';
+                            return  $return;                        
+                        }
+                    }
                 } else if ($request['regionTresDetalleTres'] == "video") {
                     if ($request->file('file-seccion-tres-c-upload-manual') == null && $request['file-seccion-tres-c-url'] == null) {
                         // return redirect("/content/create")->withErrors(['Archivo Video o Link de youtube vacio']);
                         $return["value"] = false;
                         $return["desc"] = 'Archivo Video o Link de youtube vacio';
                         return  $return;
+                    }
+                    if ($request->file('file-seccion-tres-c-upload-manual') != null){
+                        if($request->file('file-seccion-tres-c-upload-manual')->getMimeType() !="video/mp4"){                            
+                            $return["value"] = false;
+                            $return["desc"] = 'Solo se permite video/mp4 en videos subidos manual';
+                            return $return;
+                        }
                     }
                     if ($request['file-seccion-tres-c-url'] != null) {
                         $contains = Str::contains($request['file-seccion-tres-c-url'], ['www.youtube.com/embed/']);
@@ -1334,7 +1401,7 @@ class ContentController extends Controller
                 }                
 
                 break;
-            case "4":
+            case "4":                
                 if ($isUpdate) {
                     if ($previousState->formato_template != $request['tipo-region']) {
                         if ($request['regionCuatroDetalleUno'] == "default" ||  $request['regionCuatroDetalleDos'] == "default" || $request['regionCuatroDetalleTres'] == "default" || $request['regionCuatroDetalleCuatro'] == "default") {
@@ -1364,12 +1431,29 @@ class ContentController extends Controller
                         $return["desc"] = 'Archivo imagen vacio';
                         return  $return;
                     }
+                    if($request->file('file-seccion-cuatro-a') != null){
+                        if (($request->file('file-seccion-cuatro-a')->getMimeType() != "image/jpeg") &&
+                            ($request->file('file-seccion-cuatro-a')->getMimeType() != "image/png")  &&
+                            ($request->file('file-seccion-cuatro-a')->getMimeType() != "image/jpg") 
+                            ){                    
+                            $return["value"] = false;
+                            $return["desc"] = 'Archivo imagen solo en JPEG, PNG o JPG';
+                            return  $return;                        
+                        }
+                    }
                 } else if ($request['regionCuatroDetalleUno'] == "video") {
                     if ($request->file('file-seccion-cuatro-a-upload-manual') == null && $request['file-seccion-cuatro-a-url'] == null) {
                         // return redirect("/content/create")->withErrors(['Archivo Video o Link de youtube vacio']);
                         $return["value"] = false;
                         $return["desc"] = 'Archivo Video o Link de youtube vacio';
                         return  $return;
+                    }
+                    if ($request->file('file-seccion-cuatro-a-upload-manual') != null){
+                        if($request->file('file-seccion-cuatro-a-upload-manual')->getMimeType() !="video/mp4"){                            
+                            $return["value"] = false;
+                            $return["desc"] = 'Solo se permite video/mp4 en videos subidos manual';
+                            return $return;
+                        }
                     }
                     if ($request['file-seccion-cuatro-a-url'] != null) {
                         $contains = Str::contains($request['file-seccion-cuatro-a-url'], ['www.youtube.com/embed/']);
@@ -1414,12 +1498,29 @@ class ContentController extends Controller
                         $return["desc"] = 'Archivo imagen vacio';
                         return  $return;
                     }
+                    if($request->file('file-seccion-cuatro-b') != null){
+                        if (($request->file('file-seccion-cuatro-b')->getMimeType() != "image/jpeg") &&
+                        ($request->file('file-seccion-cuatro-b')->getMimeType() != "image/png")  &&
+                        ($request->file('file-seccion-cuatro-b')->getMimeType() != "image/jpg") 
+                        ){                    
+                            $return["value"] = false;
+                            $return["desc"] = 'Archivo imagen solo en JPEG, PNG o JPG';
+                            return  $return;                        
+                        }
+                    }
                 } else if ($request['regionCuatroDetalleDos'] == "video") {
                     if ($request->file('file-seccion-cuatro-b-upload-manual') == null && $request['file-seccion-cuatro-b-url'] == null) {
                         // return redirect("/content/create")->withErrors(['Archivo Video o Link de youtube vacio']);
                         $return["value"] = false;
                         $return["desc"] = 'Archivo Video o Link de youtube vacio';
                         return  $return;
+                    }
+                    if ($request->file('file-seccion-cuatro-b-upload-manual') != null){
+                        if($request->file('file-seccion-cuatro-b-upload-manual')->getMimeType() !="video/mp4"){                            
+                            $return["value"] = false;
+                            $return["desc"] = 'Solo se permite video/mp4 en videos subidos manual';
+                            return $return;
+                        }
                     }
                     if ($request['file-seccion-cuatro-b-url'] != null) {
                         $contains = Str::contains($request['file-seccion-cuatro-b-url'], ['www.youtube.com/embed/']);
@@ -1464,12 +1565,31 @@ class ContentController extends Controller
                         $return["desc"] = 'Archivo imagen vacio';
                         return  $return;
                     }
+
+                    if($request->file('file-seccion-cuatro-c') != null){
+
+                        if (($request->file('file-seccion-cuatro-c')->getMimeType() != "image/jpeg") &&
+                            ($request->file('file-seccion-cuatro-c')->getMimeType() != "image/png")  &&
+                            ($request->file('file-seccion-cuatro-c')->getMimeType() != "image/jpg") 
+                        ){                    
+                            $return["value"] = false;
+                            $return["desc"] = 'Archivo imagen solo en JPEG, PNG o JPG';
+                            return  $return;                        
+                        }                    
+                    }                        
                 } else if ($request['regionCuatroDetalleTres'] == "video") {
                     if ($request->file('file-seccion-cuatro-c-upload-manual') == null && $request['file-seccion-cuatro-c-url'] == null) {
                         // return redirect("/content/create")->withErrors(['Archivo Video o Link de youtube vacio']);
                         $return["value"] = false;
                         $return["desc"] = 'Archivo Video o Link de youtube vacio';
                         return  $return;
+                    }
+                    if ($request->file('file-seccion-cuatro-c-upload-manual') != null){
+                        if($request->file('file-seccion-cuatro-c-upload-manual')->getMimeType() !="video/mp4"){                            
+                            $return["value"] = false;
+                            $return["desc"] = 'Solo se permite video/mp4 en videos subidos manual';
+                            return $return;
+                        }
                     }
                     if ($request['file-seccion-cuatro-c-url'] != null) {
                         $contains = Str::contains($request['file-seccion-cuatro-c-url'], ['www.youtube.com/embed/']);
@@ -1516,11 +1636,28 @@ class ContentController extends Controller
                         $return["desc"] = 'Archivo imagen vacio';
                         return  $return;
                     }
+                    if ($request->file('file-seccion-cuatro-d') != null) {
+                        if (($request->file('file-seccion-cuatro-d')->getMimeType() != "image/jpeg") &&
+                        ($request->file('file-seccion-cuatro-d')->getMimeType() != "image/png")  &&
+                        ($request->file('file-seccion-cuatro-d')->getMimeType() != "image/jpg") 
+                        ){                    
+                            $return["value"] = false;
+                            $return["desc"] = 'Archivo imagen solo en JPEG, PNG o JPG';
+                            return  $return;                        
+                        }
+                    }
                 } else if ($request['regionCuatroDetalleCuatro'] == "video") {
                     if ($request->file('file-seccion-cuatro-d-upload-manual') == null && $request['file-seccion-cuatro-d-url'] == null) {
                         $return["value"] = false;
                         $return["desc"] = 'Archivo Video o Link de youtube vacio';
                         return  $return;
+                    }
+                    if ($request->file('file-seccion-cuatro-d-upload-manual') != null){
+                        if($request->file('file-seccion-cuatro-d-upload-manual')->getMimeType() !="video/mp4"){                            
+                            $return["value"] = false;
+                            $return["desc"] = 'Solo se permite video/mp4 en videos subidos manual';
+                            return $return;
+                        }
                     }
                     if ($request['file-seccion-cuatro-d-url'] != null) {
                         $contains = Str::contains($request['file-seccion-cuatro-d-url'], ['www.youtube.com/embed/']);

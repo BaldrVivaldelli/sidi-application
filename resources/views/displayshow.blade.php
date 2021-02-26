@@ -9,7 +9,7 @@
         <div class="inner">
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo"><strong>Listar dispositivos</strong></a>
+                <a href="/display/getAll" class="logo"><strong>Listar dispositivos</strong></a>
             </header>
             <!-- Form -->
             <h3></h3>

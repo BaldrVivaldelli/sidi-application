@@ -297,7 +297,7 @@ left: 60%;
         <div class="inner">
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo"><strong>Detalle</strong></a>
+                <a href="/content/getById/{{$detalle_contenido['nombre_region']}}" class="logo"><strong>Detalle</strong></a>
             </header>
             <!-- Section -->
             <section>

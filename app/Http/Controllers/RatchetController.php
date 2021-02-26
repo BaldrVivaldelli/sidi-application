@@ -166,6 +166,7 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "region_size" => $region_size,
                             "nombreContenido" => $nombreContenido,
                             "archivo_nombre" => $archivoData,
+                            "numero_session" => $resource_id
                         ]);
                         Log::info('se envia archivo uno template uno' . $messageUno);
                         $from->send($messageUno);

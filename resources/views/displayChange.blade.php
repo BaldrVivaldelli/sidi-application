@@ -8,7 +8,7 @@
         <div class="inner">
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo"><strong>Agregar Dispositivo</strong></a>
+                <a href="/display/getAll" class="logo"><strong>Agregar Dispositivo</strong></a>
             </header>
             <!-- Form -->
             <h3></h3>

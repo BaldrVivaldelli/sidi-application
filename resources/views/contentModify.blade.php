@@ -8,7 +8,7 @@
         <div class="inner">
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo"><strong>Modificar Contenido</strong></a>
+                <a href="/content/modify" class="logo"><strong>Modificar Contenido</strong></a>
             </header>
             @if($regionSelected)
             @if($errors->any())

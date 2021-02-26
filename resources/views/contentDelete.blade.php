@@ -8,7 +8,7 @@
 		<div class="inner">
 			<!-- Header -->
 			<header id="header">
-				<a href="index.html" class="logo"><strong>Borrar Contenido</strong></a>
+				<a href="/content/delete" class="logo"><strong>Borrar Contenido</strong></a>
 			</header>
 
 			<!-- Form -->
