@@ -51,6 +51,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/display/getAll', 'DispositivosController@index')->middleware('auth')->name('dispositivos');
 
+Route::post('/api/display/updateName', 'DispositivosController@updateName')->middleware('auth');
+
 // Route::get('/display/add', 'DispositivosController@index')->middleware('auth')->name('dispositivos');
 // Route::post('/display/add', 'DispositivosController@createDispositivo')->middleware('auth')->name('dispositivosCrear');
 Route::get('/display/modify', 'DispositivosController@getSelectedContent')->middleware('auth')->name('dispositivosCambiar');
@@ -90,6 +92,7 @@ Route::get('/content/delete',  'ContentController@delete')->middleware('auth')->
 Route::post('/content/delete/', 'ContentController@destroyContent')->middleware('auth')->name('borrarContenido');
 Route::post('/content/delete/{contentName}', 'ContentController@destroy')->middleware('auth')->name('borrarContenido');
 Route::post('/content/getById/{id}', 'ContentController@showByName')->middleware('auth')->name('detalleContenido');
+Route::get('/content/getById/{id}', 'ContentController@showByName')->middleware('auth')->name('detalleContenido');
 
 Route::get('/file/{hashName}', 'FileController@getFileById');
 

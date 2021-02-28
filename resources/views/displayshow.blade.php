@@ -23,7 +23,8 @@
             <table style="width:100%">
 
                 <tr>
-                    <th>Nombre</th>
+                    <th>ID conexion</th>
+                    <th>Nombre dispositivo</th>
                     <th>Nombre del contenido </th>
                     <th>Estado</th>
                     <th>Ultima Conexion</th>
@@ -31,7 +32,16 @@
                 </tr>
                 @foreach ($clientes as $indexKey => $cliente)
                 <tr>
-                    <td class="cliente"><span> {{ $cliente['name'] }}</span></td>
+                    <td class="idConnecion"><span> {{ $cliente['name'] }}</span></td>
+                    <td class="cliente">
+                    @if( Illuminate\Support\Str::contains($cliente['nombre_dispositivo'], "nombre-sin-asignar"))
+                        <input type="text" class="nombre-dispositivos" placeholder="sin nombre asociado" ></input>                                                                        
+                        <input type="hidden" class="nombre-dispositivos-anterior" name="custId" value="{{$cliente['nombre_dispositivo']}}">
+                    @else
+                        <input type="text" class="nombre-dispositivos" placeholder="sin nombre asociado" value="{{$cliente['nombre_dispositivo']}}"></input>                                                                        
+                        <input type="hidden" class="nombre-dispositivos-anterior" name="custId" value="{{$cliente['nombre_dispositivo']}}">                    
+                    @endif
+                    </td>
                     <td>
                         <select name="nombre-contenidos" class="nombre-contenidos">
                             @foreach ($cliente['total_nombreContenido'] as $indexKey => $nombreContenidos)
@@ -68,6 +78,21 @@
             </section>
         </div>
     </div>
+
+
+    <!-- The Modal -->
+    <div id="modalNombre" class="modal">
+        <!-- Modal content nombre -->
+        <div class="modal-content">
+            <span class="close_nombre_modal">&times;</span>
+            <p style="display:none" id="errorMessageModalNombre"></p>
+            <p>¿Seguro que quiere cambiar el nombre del dispositivo?</p>
+            <button id="submitChangeNombre">Si, muy seguro</button>
+            <button  class="close_nombre_modal">No, cambie de opinion</button>
+        </div>
+    </div>
+
+
     <!-- The Modal -->
     <div id="modalEstado" class="modal">
         <!-- Modal content estado -->
@@ -92,6 +117,7 @@
     <div id="modalEliminarContenido" class="modal">
         <!-- Modal content estado -->
         <div class="modal-content">
+            <span class="close_eliminar_contenido_modal">&times;</span>
             <span class="close_eliminar_contenido_modal">&times;</span>
             <p>¿Seguro quiere Eliminar el dispositivo ?</p>
             <button id="submitDeleteContent">Si, muy seguro</button>
@@ -199,12 +225,14 @@
 <script>
     // Get the modal
     var modalEstado = document.getElementById("modalEstado");
+    var modalNombre = document.getElementById("modalNombre");
     var modaContenido = document.getElementById("modalContenido");
 
     var modalEliminarContenido = document.getElementById("modalEliminarContenido");
 
     // this.parentNode.parentNode
     // Get the <span> element that closes the modal
+    var spanNombre = document.getElementsByClassName("close_nombre_modal");
     var spanEstado = document.getElementsByClassName("close_estado_modal");
     var spanContenido = document.getElementsByClassName("close_contenido_modal");
     var spanEliminarContenido = document.getElementsByClassName("close_eliminar_contenido_modal");
@@ -213,13 +241,32 @@
 
     var headerCliente
     var headerContent
+    var displayNewName
+    var displayOriginalName
+
+
+    var elsNomDisp = document.getElementsByClassName("nombre-dispositivos");
+
+    Array.prototype.forEach.call(elsNomDisp, function(el) { 
+        el.addEventListener('keypress', function(eventKey) {
+            if (eventKey.key === 'Enter') {
+                displayNewName = this.parentNode.parentNode.getElementsByClassName("cliente")[0].children[0].value
+                displayOriginalName = this.parentNode.parentNode.getElementsByClassName("cliente")[0].children[1].value;            
+                modalNombre.style.display = "block";
+            }
+        });
+    });
+
     // When the user clicks the button, open the modal 
     var elsNomCont = document.getElementsByClassName("nombre-contenidos");
 
     Array.prototype.forEach.call(elsNomCont, function(el) { 
         el.addEventListener('change', function() {
-            headerCliente = this.parentNode.parentNode.getElementsByClassName("cliente")[0].innerText;
-            headerContent = this.value;
+            headerCliente = this.parentNode.parentNode.getElementsByClassName("cliente")[0].children[0].value
+            if(headerCliente ==""){
+                headerCliente = this.parentNode.parentNode.getElementsByClassName("cliente")[0].children[1].value
+            }
+            headerContent = this.value;            
             console.log('agarre el cliente ' + headerCliente);
             modaContenido.style.display = "block";
         });
@@ -230,7 +277,10 @@
 
     Array.prototype.forEach.call(elsEstCont, function(el) {
         el.addEventListener('change', function() {
-            headerCliente = this.parentNode.parentNode.getElementsByClassName("cliente")[0].innerText;
+            headerCliente = this.parentNode.parentNode.getElementsByClassName("cliente")[0].children[0].value
+            if(headerCliente ==""){
+                headerCliente = this.parentNode.parentNode.getElementsByClassName("cliente")[0].children[1].value
+            }
             console.log('agarre el cliente ' + headerCliente);
             headerContent = this.value;
             console.log('se cambia el estado' + headerContent);
@@ -243,7 +293,10 @@
 
     Array.prototype.forEach.call(elsDelCont, function(el) { 
             el.addEventListener('click', function() {
-            headerCliente = this.parentNode.parentNode.getElementsByClassName("cliente")[0].innerText;
+            headerCliente = this.parentNode.parentNode.getElementsByClassName("cliente")[0].children[0].value
+            if(headerCliente ==""){
+                headerCliente = this.parentNode.parentNode.getElementsByClassName("cliente")[0].children[1].value
+            }
             console.log('agarre el cliente ' + headerCliente);
             headerContent = this.value;
             console.log('se va a eliminar el dispositivo' + headerContent);
@@ -255,8 +308,17 @@
     Array.prototype.forEach.call(spanEstado, function(el) { 
         el.addEventListener('click', function(){
             modalEstado.style.display = "none";
+            window.location.reload(1);
         })
     });
+    Array.prototype.forEach.call(spanNombre, function(el) { 
+        el.addEventListener('click', function(){
+            modalNombre.style.display = "none";
+            document.getElementById("errorMessageModalNombre").style.display = "none"
+            window.location.reload(1);
+        })
+    });
+    
     // .onclick = function() {
     // }
 
@@ -269,7 +331,7 @@
     Array.prototype.forEach.call(spanContenido, function(el) { 
         el.addEventListener('click', function(){
             modaContenido.style.display = "none";
-
+            window.location.reload(1);
         })
     });
     // When the user clicks on <span> (x), close the modal
@@ -280,19 +342,27 @@
     Array.prototype.forEach.call(spanEliminarContenido, function(el) { 
         el.addEventListener('click', function(){
             modalEliminarContenido.style.display = "none";
-
+            window.location.reload(1);
         })
     });
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modalEstado) {
             modalEstado.style.display = "none";
+            window.location.reload(1);
         }
         if (event.target == modaContenido) {
             modaContenido.style.display = "none";
+            window.location.reload(1);
         }
         if (event.target == modalEliminarContenido) {
             modalEliminarContenido.style.display = "none";
+            window.location.reload(1);
+        }
+        if (event.target == modalNombre) {
+            modalNombre.style.display = "none";
+            document.getElementById("errorMessageModalNombre").style.display = "none"
+            window.location.reload(1);
         }
     }
 
@@ -326,6 +396,49 @@
                 window.location.reload(1);
             }, 2000);
         };
+    });
+
+    
+    document.getElementById("submitChangeNombre").addEventListener('click', function() {
+        console.log("nuevo nombre dispositivo " + displayNewName);
+        console.log("nuevo viejo dispositivo " + displayOriginalName);
+
+
+        $.ajax({
+             type: 'POST',
+             url: "{{ config('app.url')}}/api/display/updateName",
+             data: {
+                 _token: "{{ csrf_token() }}",
+                 'displayNewName': `${displayNewName}`,
+                 'displayOriginalName': `${ displayOriginalName}`
+             },
+            success: function(msg) {       
+                if(msg.status == "ok"){                
+                    
+                    window.ws = new WebSocket('ws://{{ config('app.socket_url')}}'); 
+                    window.ws.onopen = function(e) {
+                    console.log('Connected to sidi');
+                    //en el momento que vuelve el "conectado" desde el back end se envia el pedido para obtener el contenido que se clickeo anteriormente                  
+                    ws.send(
+                        JSON.stringify({
+                            'type': 'notifyChangeDisplayName',
+                            'displayNewName': `${displayNewName}`,
+                            
+                        })
+                    );
+                    setTimeout(function(){
+                        window.location.reload(1);
+                    }, 2000);
+                    }
+                }else{
+                        document.getElementById("errorMessageModalNombre").value= msg.desc;
+                        document.getElementById("errorMessageModalNombre").style.display = "block";
+                        document.getElementById("errorMessageModalNombre").innerHTML = msg.desc;                    
+                }
+
+            }
+
+        });
     });
 
     document.getElementById("submitChangeState").addEventListener('click', function() {

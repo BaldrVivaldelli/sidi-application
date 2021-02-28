@@ -19,7 +19,7 @@ class DispositivosController extends Controller
         foreach ($aux as $data){
             $cliente = array();            
             $cliente['name'] =  $data->clientId;
-
+            $cliente['nombre_dispositivo'] = $data->nombreDispositivo;
             $id_estado = $data->id_estado;
             $auxEstate =  DB::table('estados')->where('id',$id_estado)->first();            
             $cliente['estado'] = $auxEstate->estado;
@@ -47,9 +47,9 @@ class DispositivosController extends Controller
             }
             $cliente['total_estados']   = $totalEstados;
 
-            $cliente['ultima_conexion'] = $data->created_at;            
+            $cliente['ultima_conexion'] = $data->created_at;     
             array_push($clientes,$cliente);
-        }                              
+        }               
         return view('displayShow', ['clientes' => $clientes]);
     }
 
@@ -176,5 +176,27 @@ class DispositivosController extends Controller
         Log::info('Se cambio el dispositivo de contenido');
         return view('/home', ['regions' => $regions, 'messageType' => 'updateDisplay', 'data' => $displayMacAdress]);
 
+    }
+   
+    public function updateName(Request $request){
+        Log::info('llego un cambio de nombre '. $request["displayNewName"]);
+        Log::info('el cliente original es el siguiente  '.$request["displayOriginalName"]);
+        
+        $aux = DB::table('clientes')->where('nombreDispositivo',$request["displayNewName"])->first();        
+        if($aux === null){        
+            Log::info('el cliente original es el siguiente  '.$aux);
+            $newName = $request["displayNewName"];
+            DB::table('clientes')->where('nombreDispositivo', $request["displayOriginalName"])->update([
+                'nombreDispositivo'=>   $newName
+            ]);
+            return [
+                'status' => "ok"
+            ];
+        }else{
+            return [
+                'status' => "error",
+                'desc' => "Nombre invalido, actualmente se encuentra asignado a un dispositivo con ese nombre"
+            ];
+        }
     }
 }

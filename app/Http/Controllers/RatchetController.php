@@ -135,18 +135,47 @@ class RatchetController extends Controller implements MessageComponentInterface
                 $contenido = DB::table('contenidos')->where('nombre', $nombreContenido)->first();
 
                 //aca se va a registrar el cliente en la DB
-                $isConected = DB::table('clientes')->where('ip', $ip)->count();
-                if ($isConected == 0) {
+                //$isConected = DB::table('clientes')->where('ip', $ip)->count();
+                //aca se va a registrar el cliente en la DB
+                $nombreDispositivo =$data->nombreDispositivo;             
+                echo($data->nombreDispositivo);
+                $isConected = DB::table('clientes')->where('nombreDispositivo', $nombreDispositivo)->count();
+                if ($isConected == 0 && $nombreDispositivo == "undefined") { 
+                    $countDisplay = DB::table('clientes')->count()+1;   
+                    $hashDefaultName = hash('ripemd160',"nombre-sin-asignar-". $countDisplay);                 
+                    $nombreDispositivo = "nombre-sin-asignar-".$hashDefaultName;    
                     //aca existe la verdadera connecion
                     $this->users[$from->resourceId] = $from;
                     DB::table('clientes')->insert([
                         'clientId' =>  $resource_id,
-                        // 'ip' => $ip,
+                        'nombreDispositivo'=> $nombreDispositivo,
                         'id_contenido' =>   $contenido->id,
                         'id_estado' => $contenido->id_estado,
                         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                     ]);
+                }else{          
+                    if($isConected == 0){
+                        //aca existe un nombre asignado ya al dispositivo, solo se actualiza el id de coneccion
+                        $this->users[$from->resourceId] = $from;
+                        DB::table('clientes')->insert([
+                            'clientId' =>  $resource_id,
+                            'nombreDispositivo' => $nombreDispositivo,
+                            'id_contenido' =>   $contenido->id,
+                            'id_estado' => $contenido->id_estado,
+                            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                            ]);
+                    }else{
+                        //aca existe un nombre asignado ya al dispositivo, solo se actualiza el id de coneccion
+                        $this->users[$from->resourceId] = $from;
+                        DB::table('clientes')->where('nombreDispositivo', $nombreDispositivo)->update([
+                            'clientId' =>  $resource_id,
+                            'nombreDispositivo' => $nombreDispositivo,
+                            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                            ]);
+                    }          
                 }
 
 
@@ -165,6 +194,7 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "numeroDeCuadro" => $numeroCuadro,
                             "region_size" => $region_size,
                             "nombreContenido" => $nombreContenido,
+                            "nombreDispositivo"=> $nombreDispositivo,
                             "archivo_nombre" => $archivoData,
                             "numero_session" => $resource_id
                         ]);
@@ -184,6 +214,7 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "numeroDeCuadro" => $numeroCuadro,
                             "region_size" => $region_size,
                             "nombreContenido" => $nombreContenido,
+                            "nombreDispositivo"=> $nombreDispositivo,
                             "archivo_nombre" => $archivoData,
                         ]);
                         $from->send($messageUno);
@@ -200,6 +231,7 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "numeroDeCuadro" => $numeroCuadro,
                             "region_size" => $region_size,
                             "nombreContenido" => $nombreContenido,
+                            "nombreDispositivo"=> $nombreDispositivo,
                             "archivo_nombre" => $archivoData,
                         ]);
                         Log::info('se envia archivo  dos template 3' . $messageDos);
@@ -215,6 +247,7 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "numeroDeCuadro" => $numeroCuadro,
                             "region_size" => $region_size,
                             "nombreContenido" => $nombreContenido,
+                            "nombreDispositivo"=> $nombreDispositivo,
                             "archivo_nombre" => $archivoData,
                         ]);
                         Log::info('se envia archivo  tres template 3' . $messageTres);
@@ -234,6 +267,7 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "numeroDeCuadro" => $numeroCuadro,
                             "region_size" => $region_size,
                             "nombreContenido" => $nombreContenido,
+                            "nombreDispositivo"=> $nombreDispositivo,
                             "archivo_nombre" => $archivoData,
                         ]);
                         Log::info('se envia archivo  uno template 4' . $mesageUno);
@@ -248,6 +282,7 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "type" => $type,
                             "numeroDeCuadro" => $numeroCuadro,
                             "nombreContenido" => $nombreContenido,
+                            "nombreDispositivo"=> $nombreDispositivo,
                             "region_size" => $region_size,
                             "archivo_nombre" => $archivoData,
                         ]);
@@ -263,6 +298,7 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "type" => $type,
                             "numeroDeCuadro" => $numeroCuadro,
                             "nombreContenido" => $nombreContenido,
+                            "nombreDispositivo"=> $nombreDispositivo,
                             "region_size" => $region_size,
                             "archivo_nombre" => $archivoData,
                         ]);
@@ -278,6 +314,7 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "type" => $type,
                             "numeroDeCuadro" => $numeroCuadro,
                             "nombreContenido" => $nombreContenido,
+                            "nombreDispositivo"=> $nombreDispositivo,
                             "region_size" => $region_size,
                             "archivo_nombre" => $archivoData,
                         ]);
@@ -320,7 +357,9 @@ class RatchetController extends Controller implements MessageComponentInterface
                                     "archivo_nombre" => $archivoData
                                 ]);
                                 Log::info('se envia actualizacion de archivo archivo uno  template 1' . $messageUno);
-                                $sendData->send($messageUno);
+                                if($destino->id_estado == 4){
+                                    $sendData->send($messageUno);
+                                }
                                 // foreach ($this->users as $client) {                                
                                 //     $client->send($messageUno);
                                 // }
@@ -370,10 +409,12 @@ class RatchetController extends Controller implements MessageComponentInterface
                                 ]);
                                 Log::info('se envia actualizacion de archivo archivo dos  template 3' . $messageTres);
 
-                                $sendData->send($messageUno);                                
-                                $sendData->send($messageDos);
-                                $sendData->send($messageTres);
-
+                                if($destino->id_estado == 4){
+                                    $sendData->send($messageUno);                                
+                                    $sendData->send($messageDos);
+                                    $sendData->send($messageTres);
+                                }
+                                    
                                 break;
                             case "4":
                                 $region_size = "region_cuatro";
@@ -431,14 +472,16 @@ class RatchetController extends Controller implements MessageComponentInterface
                                     "nombreContenido" => $contenido->nombre,
                                     "archivo_nombre" => $archivoCuatroData
                                 ]);
-                                Log::info('se envia actualizacion de archivo archivo uno  template 4' . $messageUno);
-                                $sendData->send($messageUno);
-                                Log::info('se envia actualizacion de archivo archivo dos  template 4' . $messageDos);
-                                $sendData->send($messageDos);
-                                Log::info('se envia actualizacion de archivo archivo tres  template 4' . $messageTres);
-                                $sendData->send($messageTres);
-                                Log::info('se envia actualizacion de archivo archivo cuatro  template 4' . $messageCuatro);
-                                $sendData->send($messageCuatro);
+                                if($destino->id_estado == 4){                                    
+                                    Log::info('se envia actualizacion de archivo archivo uno  template 4' . $messageUno);
+                                    $sendData->send($messageUno);
+                                    Log::info('se envia actualizacion de archivo archivo dos  template 4' . $messageDos);
+                                    $sendData->send($messageDos);
+                                    Log::info('se envia actualizacion de archivo archivo tres  template 4' . $messageTres);
+                                    $sendData->send($messageTres);
+                                    Log::info('se envia actualizacion de archivo archivo cuatro  template 4' . $messageCuatro);
+                                    $sendData->send($messageCuatro);
+                                }
                                 break;
                         }
                     }
@@ -448,8 +491,8 @@ class RatchetController extends Controller implements MessageComponentInterface
 
                 $contenido =  DB::table('contenidos')->where('nombre',  $data->nuevoContenido)->first();
                 $formato_template = $contenido->formato_template;
-                $destino =  DB::table('clientes')->where('clientId', $data->cliente)->first();                
-                DB::table('clientes')->where('clientId', $data->cliente)->update(['id_contenido' =>  $contenido->id]);
+                $destino =  DB::table('clientes')->where('nombreDispositivo', $data->cliente)->first();                
+                DB::table('clientes')->where('nombreDispositivo', $data->cliente)->update(['id_contenido' =>  $contenido->id]);
 
                 $idResource = $destino->clientId;
 
@@ -477,7 +520,10 @@ class RatchetController extends Controller implements MessageComponentInterface
                         ]);
                         Log::info('se envia actualizacion de dispositivo para template 1' . $messageUno);
 
-                        $sendData->send($messageUno);
+                        //en caso de que este inhabilitado no va a enviar nada
+                        if($destino->id_estado == 4){
+                            $sendData->send($messageUno);
+                        }
                         break;
                     case "3":
                         $region_size = "region_tres";
@@ -530,13 +576,15 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "archivo_nombre" => $archivoTresData
                         ]);
 
-                        Log::info('se envia actualizacion de dispositivo para template 3' . $messageUno);
-                        $sendData->send($messageUno);
-                        Log::info('se envia actualizacion de dispositivo para template 3' . $messageDos);
-                        $sendData->send($messageDos);
-                        Log::info('se envia actualizacion de dispositivo para template 3' . $messageTres);
-                        $sendData->send($messageTres);
-
+                        //en caso de que este inhabilitado no va a enviar nada
+                        if($destino->id_estado == 4){
+                            Log::info('se envia actualizacion de dispositivo para template 3' . $messageUno);
+                            $sendData->send($messageUno);
+                            Log::info('se envia actualizacion de dispositivo para template 3' . $messageDos);
+                            $sendData->send($messageDos);
+                            Log::info('se envia actualizacion de dispositivo para template 3' . $messageTres);
+                            $sendData->send($messageTres);
+                        }
                         break;
                     case "4":
                         // $archivoUno =  DB::table('archivos')->where('id', $contenido->id_archivo_uno)->first();
@@ -598,14 +646,16 @@ class RatchetController extends Controller implements MessageComponentInterface
                             "nombreContenido" => $contenido->nombre,
                             "archivo_nombre" => $archivoCuatroData
                         ]);
-                        Log::info('se envia actualizacion de dispositivo para template 4' . $messageUno);
-                        $sendData->send($messageUno);
-                        Log::info('se envia actualizacion de dispositivo para template 4' . $messageDos);
-                        $sendData->send($messageDos);
-                        Log::info('se envia actualizacion de dispositivo para template 4' . $messageTres);
-                        $sendData->send($messageTres);
-                        Log::info('se envia actualizacion de dispositivo para template 4' . $messageCuatro);
-                        $sendData->send($messageCuatro);
+                        if($destino->id_estado == 4){
+                            Log::info('se envia actualizacion de dispositivo para template 4' . $messageUno);
+                            $sendData->send($messageUno);
+                            Log::info('se envia actualizacion de dispositivo para template 4' . $messageDos);
+                            $sendData->send($messageDos);
+                            Log::info('se envia actualizacion de dispositivo para template 4' . $messageTres);
+                            $sendData->send($messageTres);
+                            Log::info('se envia actualizacion de dispositivo para template 4' . $messageCuatro);
+                            $sendData->send($messageCuatro);
+                        }
                         break;
                 }
 
@@ -620,9 +670,9 @@ class RatchetController extends Controller implements MessageComponentInterface
             case "changeStateDisplay":
 
                 $estado = DB::table('estados')->where('estado', $data->nuevoContenido)->first();
-                DB::table('clientes')->where('clientId', $data->cliente)->update(['id_estado' =>  $estado->id]);
+                DB::table('clientes')->where('nombreDispositivo', $data->cliente)->update(['id_estado' =>  $estado->id]);
                 // 4 = bloqueado
-                $cliente = DB::table('clientes')->where('clientId', $data->cliente)->first();
+                $cliente = DB::table('clientes')->where('nombreDispositivo', $data->cliente)->first();
                 if ($data->nuevoContenido == 'inhabilitado') {
 
                     // dd($cliente);
@@ -632,8 +682,8 @@ class RatchetController extends Controller implements MessageComponentInterface
                     $message = json_encode([
                         "type" => "userBlocked",
                     ]);
-                    $destino =  DB::table('clientes')->where('clientId', $data->cliente)->first();
-                    DB::table('clientes')->where('clientId', $data->cliente)->update(['id_estado' =>  3]);
+                    $destino =  DB::table('clientes')->where('nombreDispositivo', $data->cliente)->first();
+                    DB::table('clientes')->where('nombreDispositivo', $data->cliente)->update(['id_estado' =>  3]);
 
                     $idResource = $destino->clientId;
                     $sendData = $this->users[$idResource];
@@ -783,9 +833,6 @@ class RatchetController extends Controller implements MessageComponentInterface
                             break;
                     }
                 }
-
-
-
                 break;
             case "deleteDisplay":
                 //$this->users[$id]->sendMessageToAll(                            
@@ -794,8 +841,8 @@ class RatchetController extends Controller implements MessageComponentInterface
                 $message = json_encode([
                     "type" => 'deleteDisplay'
                 ]);
-                $destino =  DB::table('clientes')->where('clientId', $data->cliente)->first();
-                DB::table('clientes')->where('clientId', $data->cliente)->delete();
+                $destino =  DB::table('clientes')->where('nombreDispositivo', $data->cliente)->first();
+                DB::table('clientes')->where('nombreDispositivo', $data->cliente)->delete();
                 // DB::table('clientes')->where('clientId', $data->cliente)->update(['id_contenido' =>  $data->nuevoContenido]);                
                 
                 $idResource = $destino->clientId;
@@ -856,6 +903,18 @@ class RatchetController extends Controller implements MessageComponentInterface
                 DB::table('clientes')->where('clientId', $from->resourceId)->delete();
                 $this->clients->attach($from);
                 break;
+            case "notifyChangeDisplayName":
+                $cliente = DB::table('clientes')->where('nombreDispositivo', $data->displayNewName)->first();                
+                $destino = $cliente;
+                $idResource = $destino->clientId;
+                $sendData = $this->users[$idResource];
+
+                $message = json_encode([
+                    "type" => 'notifyChangeDisplayName',
+                    "value"=> $destino->nombreDispositivo
+                ]);                
+                $sendData->send($message);
+                break;                
         }
     }
 

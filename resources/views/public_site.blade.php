@@ -842,6 +842,7 @@ width: 29%;
 </body>
 <script>
     let dataMc;
+    let nombreDispositivo;
     fetch('{{ env('APP_URL')}}' +'/api/contenido/getAll/')
         .then(response => response.json())
         .then(data =>
@@ -907,6 +908,7 @@ width: 29%;
         if(dataMc == null){
             dataMc = this.title;
         }
+      
         document.body.innerHTML = '';
         var containerDiv = document.createElement("div");
         containerDiv.id = "container";
@@ -936,6 +938,7 @@ width: 29%;
                 JSON.stringify({
                     'type': 'snapshot',
                     'content': `${dataMc}`,
+                    'nombreDispositivo': `${nombreDispositivo}`
                 })
             );
         }
@@ -963,7 +966,9 @@ width: 29%;
                     console.log('volvio el contenido ')
                     console.log(e)
                     var json = JSON.parse(e.data);
-                    
+                    if(nombreDispositivo == null){
+                        nombreDispositivo = response.nombreDispositivo;
+                    }
                     if(json.archivo_nombre.includes("--CONTIENE DATO TEXTO--")){
                         var textValue = json.archivo_nombre.replace("--CONTIENE DATO TEXTO--","");                        
                         var section = document.createElement('section')
@@ -1186,6 +1191,10 @@ width: 29%;
                             updateContentData(blob, url, json.region_size, json.numeroDeCuadro);
                         });
                     }                        
+                    break;
+                case "notifyChangeDisplayName":          
+                    console.log("el cambio es el siguiente");
+                    nombreDispositivo = response.value;
                     break;
             }
         }

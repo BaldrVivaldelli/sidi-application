@@ -180,9 +180,9 @@ class ContentController extends Controller
         switch ($request->input('tipo-region')) {
             case "1":
 
-                if ($request['file-seccion-una-a-url'] != null) {
+                if ($request['file-seccion-una-a-url'] != null) {                    
                     $this->processYoutube($request['file-seccion-una-a-url']);
-                    $idArchivooUnoNombreOriginal = $request['file-seccion-una-a-url'];
+                    $idArchivooUnoNombreOriginal = $this->getYoutubeEmbedUrl($request['file-seccion-una-a-url']);
                 } else if ($request['mensaje-seccion-una-a'] != null) {
                     DB::table('archivos')->insert([
                         'nombre' => $request['mensaje-seccion-una-a'], 'tipo' => 'texto',
@@ -200,8 +200,7 @@ class ContentController extends Controller
                     $this->processData($fileUno, 1);
                     $idArchivooUnoNombreOriginal = $fileUno->getClientOriginalName();
                 }
-                $idArchivoUno =  DB::table('archivos')->where('nombre', $idArchivooUnoNombreOriginal)->first();
-
+                $idArchivoUno =  DB::table('archivos')->where('nombre', $idArchivooUnoNombreOriginal)->first();                
                 //              Creo el registro en la tabla contenidos                
                 DB::table('contenidos')->where('nombre', $request->input('content-name'))->update([
                     // 'nombre' =>             $request->input('content-name'),
@@ -219,7 +218,7 @@ class ContentController extends Controller
 
                     if ($request['file-seccion-tres-a-url'] != null) {
                         $this->processYoutube($request['file-seccion-tres-a-url']);
-                        $idArchivooUnoNombreOriginal = $request['file-seccion-tres-a-url'];
+                        $idArchivooUnoNombreOriginal = $this->getYoutubeEmbedUrl($request['file-seccion-tres-a-url']);
                     } else if ($request['mensaje-seccion-tres-a'] != null) {
                         DB::table('archivos')->insert([
                             'nombre' => $request['mensaje-seccion-tres-a'], 'tipo' => 'texto',
@@ -254,7 +253,7 @@ class ContentController extends Controller
 
                     if ($request['file-seccion-tres-b-url'] != null) {
                         $this->processYoutube($request['file-seccion-tres-b-url']);
-                        $idArchivooDosNombreOriginal = $request['file-seccion-tres-b-url'];
+                        $idArchivooDosNombreOriginal = $this->getYoutubeEmbedUrl($request['file-seccion-tres-b-url']);
                     } else if ($request['mensaje-seccion-tres-b'] != null) {
                         DB::table('archivos')->insert([
                             'nombre' => $request['mensaje-seccion-tres-b'], 'tipo' => 'texto',
@@ -285,7 +284,7 @@ class ContentController extends Controller
                 if ($request['regionTresDetalleTres'] != "default") {
                     if ($request['file-seccion-tres-c-url'] != null) {
                         $this->processYoutube($request['file-seccion-tres-c-url']);
-                        $idArchivooTresNombreOriginal = $request['file-seccion-tres-c-url'];
+                        $idArchivooTresNombreOriginal = $this->getYoutubeEmbedUrl($request['file-seccion-tres-c-url']);
                     } else if ($request['mensaje-seccion-tres-c'] != null) {
                         DB::table('archivos')->insert([
                             'nombre' => $request['mensaje-seccion-tres-c'], 'tipo' => 'texto',
@@ -322,7 +321,7 @@ class ContentController extends Controller
 
                     if ($request['file-seccion-cuatro-a-url'] != null) {
                         $this->processYoutube($request['file-seccion-cuatro-a-url']);
-                        $idArchivooUnoNombreOriginal = $request['file-seccion-cuatro-a-url'];
+                        $idArchivooUnoNombreOriginal = $this->getYoutubeEmbedUrl($request['file-seccion-cuatro-a-url']);
                     } else if ($request['mensaje-seccion-cuatro-a'] != null) {
                         DB::table('archivos')->insert([
                             'nombre' => $request['mensaje-seccion-cuatro-a'], 'tipo' => 'texto',
@@ -356,7 +355,7 @@ class ContentController extends Controller
 
                     if ($request['file-seccion-cuatro-b-url'] != null) {
                         $this->processYoutube($request['file-seccion-cuatro-b-url']);
-                        $idArchivooDosNombreOriginal = $request['file-seccion-cuatro-b-url'];
+                        $idArchivooDosNombreOriginal = $this->getYoutubeEmbedUrl($request['file-seccion-cuatro-b-url']);
                     } else if ($request['mensaje-seccion-cuatro-b'] != null) {
                         DB::table('archivos')->insert([
                             'nombre' => $request['mensaje-seccion-cuatro-b'], 'tipo' => 'texto',
@@ -390,7 +389,7 @@ class ContentController extends Controller
 
                     if ($request['file-seccion-cuatro-c-url'] != null) {
                         $this->processYoutube($request['file-seccion-cuatro-c-url']);
-                        $idArchivooTresNombreOriginal = $request['file-seccion-cuatro-c-url'];
+                        $idArchivooTresNombreOriginal = $this->getYoutubeEmbedUrl($request['file-seccion-cuatro-c-url']);
                     } else if ($request['mensaje-seccion-cuatro-c'] != null) {
                         DB::table('archivos')->insert([
                             'nombre' => $request['mensaje-seccion-cuatro-c'], 'tipo' => 'texto',
@@ -424,7 +423,7 @@ class ContentController extends Controller
 
                     if ($request['file-seccion-cuatro-d-url'] != null) {
                         $this->processYoutube($request['file-seccion-cuatro-d-url']);
-                        $idArchivooCuatroNombreOriginal = $request['file-seccion-cuatro-d-url'];
+                        $idArchivooCuatroNombreOriginal = $this->getYoutubeEmbedUrl($request['file-seccion-cuatro-d-url']);
                     } else if ($request['mensaje-seccion-cuatro-d'] != null) {
                         DB::table('archivos')->insert([
                             'nombre' => $request['mensaje-seccion-cuatro-d'], 'tipo' => 'texto',
@@ -618,7 +617,7 @@ class ContentController extends Controller
                         break;
                     case "video":
                         if ($request->file('file-seccion-una-a-upload-manual') == null) {
-                            $idArchivooUnoNombreOriginal = $request['file-seccion-una-a-url'];
+                            $idArchivooUnoNombreOriginal =  $this->getYoutubeEmbedUrl($request['file-seccion-una-a-url']);
                             $this->processYoutube($request['file-seccion-una-a-url']);
                             $idArchivoUno =  DB::table('archivos')->where('nombre', $idArchivooUnoNombreOriginal)->first();
                             DB::table('contenidos')->insert([
@@ -651,7 +650,7 @@ class ContentController extends Controller
 
                 if ($request['file-seccion-tres-a-url'] != null) {
                     $this->processYoutube($request['file-seccion-tres-a-url']);
-                    $idArchivooUnoNombreOriginal = $request['file-seccion-tres-a-url'];
+                    $idArchivooUnoNombreOriginal =  $this->getYoutubeEmbedUrl($request['file-seccion-tres-a-url']);
                 } else if ($request['mensaje-seccion-tres-a'] != null) {
                     DB::table('archivos')->insert([
                         'nombre' => $request['mensaje-seccion-tres-a'], 'tipo' => 'texto',
@@ -673,7 +672,7 @@ class ContentController extends Controller
 
                 if ($request['file-seccion-tres-b-url'] != null) {
                     $this->processYoutube($request['file-seccion-tres-b-url']);
-                    $idArchivooDosNombreOriginal = $request['file-seccion-tres-b-url'];
+                    $idArchivooDosNombreOriginal = $this->getYoutubeEmbedUrl($request['file-seccion-tres-b-url']);
                 } else if ($request['mensaje-seccion-tres-b'] != null) {
                     DB::table('archivos')->insert([
                         'nombre' => $request['mensaje-seccion-tres-b'], 'tipo' => 'texto',
@@ -694,7 +693,7 @@ class ContentController extends Controller
 
                 if ($request['file-seccion-tres-c-url'] != null) {
                     $this->processYoutube($request['file-seccion-tres-c-url']);
-                    $idArchivooTresNombreOriginal = $request['file-seccion-tres-c-url'];
+                    $idArchivooTresNombreOriginal =  $this->getYoutubeEmbedUrl($request['file-seccion-tres-c-url']);
                 } else if ($request['mensaje-seccion-tres-c'] != null) {
                     DB::table('archivos')->insert([
                         'nombre' => $request['mensaje-seccion-tres-c'], 'tipo' => 'texto',
@@ -736,7 +735,7 @@ class ContentController extends Controller
 
                 if ($request['file-seccion-cuatro-a-url'] != null) {
                     $this->processYoutube($request['file-seccion-cuatro-a-url']);
-                    $idArchivooUnoNombreOriginal = $request['file-seccion-cuatro-a-url'];
+                    $idArchivooUnoNombreOriginal =  $this->getYoutubeEmbedUrl($request['file-seccion-cuatro-a-url']);
                 } else                 if ($request['mensaje-seccion-cuatro-a'] != null) {
                     DB::table('archivos')->insert([
                         'nombre' => $request['mensaje-seccion-cuatro-a'], 'tipo' => 'texto',
@@ -758,7 +757,7 @@ class ContentController extends Controller
 
                 if ($request['file-seccion-cuatro-b-url'] != null) {
                     $this->processYoutube($request['file-seccion-cuatro-b-url']);
-                    $idArchivooDosNombreOriginal = $request['file-seccion-cuatro-b-url'];
+                    $idArchivooDosNombreOriginal =  $this->getYoutubeEmbedUrl($request['file-seccion-cuatro-b-url']);
                 } else                 if ($request['mensaje-seccion-cuatro-b'] != null) {
                     DB::table('archivos')->insert([
                         'nombre' => $request['mensaje-seccion-cuatro-b'], 'tipo' => 'texto',
@@ -779,7 +778,7 @@ class ContentController extends Controller
 
                 if ($request['file-seccion-cuatro-c-url'] != null) {
                     $this->processYoutube($request['file-seccion-cuatro-c-url']);
-                    $idArchivooTresNombreOriginal = $request['file-seccion-cuatro-c-url'];
+                    $idArchivooTresNombreOriginal =  $this->getYoutubeEmbedUrl($request['file-seccion-cuatro-c-url']);
                 } else  if ($request['mensaje-seccion-cuatro-c'] != null) {
                     DB::table('archivos')->insert([
                         'nombre' => $request['mensaje-seccion-cuatro-c'], 'tipo' => 'texto',
@@ -800,7 +799,7 @@ class ContentController extends Controller
 
                 if ($request['file-seccion-cuatro-d-url'] != null) {
                     $this->processYoutube($request['file-seccion-cuatro-d-url']);
-                    $idArchivooCuatroNombreOriginal = $request['file-seccion-cuatro-d-url'];
+                    $idArchivooCuatroNombreOriginal =  $this->getYoutubeEmbedUrl($request['file-seccion-cuatro-d-url']);
                 } else if ($request['mensaje-seccion-cuatro-d'] != null) {
                     DB::table('archivos')->insert([
                         'nombre' => $request['mensaje-seccion-cuatro-d'], 'tipo' => 'texto',
@@ -847,8 +846,9 @@ class ContentController extends Controller
     function processYoutube($url)
     {
 
+        $youtubeUrl = $this->getYoutubeEmbedUrl($url);     
         DB::table('archivos')->insert([
-            'nombre' => $url,
+            'nombre' => $youtubeUrl,
             'ubicacion' => "",
             'tipo' => "youtube",
             'youtube_url' => $url,
@@ -1076,6 +1076,20 @@ class ContentController extends Controller
         return view('contentModify', ['regions' => $regions, 'regionSelected' => false]);
     }
 
+    function getYoutubeEmbedUrl($url){
+        $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_-]+)\??/i';
+        $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))(\w+)/i';
+    
+        if (preg_match($longUrlRegex, $url, $matches)) {
+            $youtube_id = $matches[count($matches) - 1];
+        }
+    
+        if (preg_match($shortUrlRegex, $url, $matches)) {
+            $youtube_id = $matches[count($matches) - 1];
+        }
+        return 'https://www.youtube.com/embed/' . $youtube_id ;
+    }
+    
     // VALIDADOR GENERAL
     function contentGeneralValidator($request, $isUpdate, $previousState)
     {
@@ -1130,10 +1144,12 @@ class ContentController extends Controller
                     }
                     
                     if ($request['file-seccion-una-a-url'] != null) {
-                        $contains = Str::contains($request['file-seccion-una-a-url'], ['www.youtube.com/embed/']);
-                        if ($contains == false) {
+                        $containsYoutubeUrl = Str::contains($request['file-seccion-una-a-url'], ['https://www.youtube.com']);
+                        $containsShortUrlYoutube = Str::contains($request['file-seccion-una-a-url'], ['https://youtu.be/']);
+                        
+                        if ($containsYoutubeUrl == false && $containsShortUrlYoutube == false) {
                             $return["value"] = false;
-                            $return["desc"] = 'Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ';
+                            $return["desc"] = 'Link tiene que ser solo de youtube https://www.youtube.com/ o https://youtu.be/';
                             return  $return;
                         }else if (
                             Str::contains(strtolower($request['file-seccion-una-a-url']), "<script>") || 
@@ -1230,13 +1246,13 @@ class ContentController extends Controller
                             return $return;
                         }
                     }
-                    if ($request['file-seccion-tres-a-url'] != null) {
-                        $contains = Str::contains($request['file-seccion-tres-a-url'], ['www.youtube.com/embed/']);
-                        if ($contains == false) {
-                            // return redirect("/content/create")->withErrors(['Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ']);
+                    if ($request['file-seccion-tres-a-url'] != null) {                        
+                        $containsYoutubeUrl = Str::contains($request['file-seccion-tres-a-url'], ['https://www.youtube.com']);
+                        $containsShortUrlYoutube = Str::contains($request['file-seccion-tres-a-url'], ['https://youtu.be/']);                        
+                        if ($containsYoutubeUrl == false && $containsShortUrlYoutube == false) {
                             $return["value"] = false;
-                            $return["desc"] = 'Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ';
-                            return  $return;
+                            $return["desc"] = 'Link tiene que ser solo de youtube https://www.youtube.com/ o https://youtu.be/';
+                            return  $return;                    
                         }else if (
                             Str::contains(strtolower($request['file-seccion-tres-a-url']), "<script>") || 
                             Str::contains(strtolower($request['file-seccion-tres-a-url']), "select * from") ||
@@ -1299,12 +1315,12 @@ class ContentController extends Controller
                         }
                     }
                     if ($request['file-seccion-tres-b-url'] != null) {
-                        $contains = Str::contains($request['file-seccion-tres-b-url'], ['www.youtube.com/embed/']);
-                        if ($contains == false) {
-                            // return redirect("/content/create")->withErrors(['Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ']);
+                        $containsYoutubeUrl = Str::contains($request['file-seccion-tres-b-url'], ['https://www.youtube.com']);
+                        $containsShortUrlYoutube = Str::contains($request['file-seccion-tres-b-url'], ['https://youtu.be/']);                        
+                        if ($containsYoutubeUrl == false && $containsShortUrlYoutube == false) {
                             $return["value"] = false;
-                            $return["desc"] = 'Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ';
-                            return  $return;
+                            $return["desc"] = 'Link tiene que ser solo de youtube https://www.youtube.com/ o https://youtu.be/';
+                            return  $return;                                           
                         }else if (
                             Str::contains(strtolower($request['file-seccion-tres-b-url']), "<script>") || 
                             Str::contains(strtolower($request['file-seccion-tres-b-url']), "select * from") ||
@@ -1365,12 +1381,12 @@ class ContentController extends Controller
                         }
                     }
                     if ($request['file-seccion-tres-c-url'] != null) {
-                        $contains = Str::contains($request['file-seccion-tres-c-url'], ['www.youtube.com/embed/']);
-                        if ($contains == false) {
-                            // return redirect("/content/create")->withErrors(['Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ']);
+                        $containsYoutubeUrl = Str::contains($request['file-seccion-tres-c-url'], ['https://www.youtube.com']);
+                        $containsShortUrlYoutube = Str::contains($request['file-seccion-tres-c-url'], ['https://youtu.be/']);                        
+                        if ($containsYoutubeUrl == false && $containsShortUrlYoutube == false) {
                             $return["value"] = false;
-                            $return["desc"] = 'Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ';
-                            return  $return;
+                            $return["desc"] = 'Link tiene que ser solo de youtube https://www.youtube.com/ o https://youtu.be/';
+                            return  $return;                              
                         }else if (
                             Str::contains(strtolower($request['file-seccion-tres-c-url']), "<script>") || 
                             Str::contains(strtolower($request['file-seccion-tres-c-url']), "select * from") ||
@@ -1455,13 +1471,13 @@ class ContentController extends Controller
                             return $return;
                         }
                     }
-                    if ($request['file-seccion-cuatro-a-url'] != null) {
-                        $contains = Str::contains($request['file-seccion-cuatro-a-url'], ['www.youtube.com/embed/']);
-                        if ($contains == false) {
-                            // return redirect("/content/create")->withErrors(['Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ']);
+                    if ($request['file-seccion-cuatro-a-url'] != null) {                        
+                        $containsYoutubeUrl = Str::contains($request['file-seccion-cuatro-a-url'], ['https://www.youtube.com']);
+                        $containsShortUrlYoutube = Str::contains($request['file-seccion-cuatro-a-url'], ['https://youtu.be/']);                        
+                        if ($containsYoutubeUrl == false && $containsShortUrlYoutube == false) {
                             $return["value"] = false;
-                            $return["desc"] = 'Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ';
-                            return  $return;
+                            $return["desc"] = 'Link tiene que ser solo de youtube https://www.youtube.com/ o https://youtu.be/';
+                            return  $return;                                                                          
                         }else if (
                             Str::contains(strtolower($request['file-seccion-cuatro-a-url']), "<script>") || 
                             Str::contains(strtolower($request['file-seccion-cuatro-a-url']), "select * from") ||
@@ -1523,12 +1539,12 @@ class ContentController extends Controller
                         }
                     }
                     if ($request['file-seccion-cuatro-b-url'] != null) {
-                        $contains = Str::contains($request['file-seccion-cuatro-b-url'], ['www.youtube.com/embed/']);
-                        if ($contains == false) {
-                            // return redirect("/content/create")->withErrors(['Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ']);
+                        $containsYoutubeUrl = Str::contains($request['file-seccion-cuatro-b-url'], ['https://www.youtube.com']);
+                        $containsShortUrlYoutube = Str::contains($request['file-seccion-cuatro-b-url'], ['https://youtu.be/']);                        
+                        if ($containsYoutubeUrl == false && $containsShortUrlYoutube == false) {
                             $return["value"] = false;
-                            $return["desc"] = 'Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ';
-                            return  $return;
+                            $return["desc"] = 'Link tiene que ser solo de youtube https://www.youtube.com/ o https://youtu.be/';
+                            return  $return;                                                                                  
                         }else if (
                             Str::contains(strtolower($request['file-seccion-cuatro-b-url']), "<script>") || 
                             Str::contains(strtolower($request['file-seccion-cuatro-b-url']), "select * from") ||
@@ -1592,12 +1608,12 @@ class ContentController extends Controller
                         }
                     }
                     if ($request['file-seccion-cuatro-c-url'] != null) {
-                        $contains = Str::contains($request['file-seccion-cuatro-c-url'], ['www.youtube.com/embed/']);
-                        if ($contains == false) {
-                            // return redirect("/content/create")->withErrors(['Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ']);
+                        $containsYoutubeUrl = Str::contains($request['file-seccion-cuatro-c-url'], ['https://www.youtube.com']);
+                        $containsShortUrlYoutube = Str::contains($request['file-seccion-cuatro-c-url'], ['https://youtu.be/']);                        
+                        if ($containsYoutubeUrl == false && $containsShortUrlYoutube == false) {
                             $return["value"] = false;
-                            $return["desc"] = 'Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/';
-                            return  $return;
+                            $return["desc"] = 'Link tiene que ser solo de youtube https://www.youtube.com/ o https://youtu.be/';
+                            return  $return;                                                              
                         }else if (
                             Str::contains(strtolower($request['file-seccion-cuatro-c-url']), "<script>") || 
                             Str::contains(strtolower($request['file-seccion-cuatro-c-url']), "select * from") ||
@@ -1660,12 +1676,12 @@ class ContentController extends Controller
                         }
                     }
                     if ($request['file-seccion-cuatro-d-url'] != null) {
-                        $contains = Str::contains($request['file-seccion-cuatro-d-url'], ['www.youtube.com/embed/']);
-                        if ($contains == false) {
-                            // return redirect("/content/create")->withErrors(['Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ']);
+                        $containsYoutubeUrl = Str::contains($request['file-seccion-cuatro-d-url'], ['https://www.youtube.com']);
+                        $containsShortUrlYoutube = Str::contains($request['file-seccion-cuatro-d-url'], ['https://youtu.be/']);                        
+                        if ($containsYoutubeUrl == false && $containsShortUrlYoutube == false) {
                             $return["value"] = false;
-                            $return["desc"] = 'Link tiene que ser solo de youtube y bajo el siguiente formato https://www.youtube.com/embed/ ';
-                            return $return;
+                            $return["desc"] = 'Link tiene que ser solo de youtube https://www.youtube.com/ o https://youtu.be/';
+                            return  $return;                   
                         }else if (
                             Str::contains(strtolower($request['file-seccion-cuatro-d-url']), "<script>") || 
                             Str::contains(strtolower($request['file-seccion-cuatro-d-url']), "select * from") ||

@@ -16,7 +16,7 @@ class CreateClientsTable extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('clientId');            
-            $table->string('ip');            
+            $table->string('nombreDispositivo');            
             $table->unsignedInteger('id_contenido');
             $table->unsignedInteger('id_estado');
             $table->foreign('id_estado')->references('id')->on('estados');     
