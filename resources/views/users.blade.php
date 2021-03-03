@@ -185,21 +185,24 @@
 	// When the user clicks on <span> (x), close the modal
 	modalCambiarRol.onclick = function() {
 		modalCambiarRol.style.display = "none";
-
+		window.location.reload(1);
 	}
 
 	spanCambiarRol.onclick = function() {
 		modalCambiarRol.style.display = "none";
+		window.location.reload(1);
 	}		
 		
 	// When the user clicks on <span> (x), close the modal
 	modalEliminarUsuario.onclick = function() {
 		modalEliminarUsuario.style.display = "none";
+		window.location.reload(1);
 
 	}
 	// When the user clicks on <span> (x), close the modal
 	spanEliminarUsuario.onclick = function() {
 		modalEliminarUsuario.style.display = "none";
+		window.location.reload(1);
 	}
 
 	document.getElementById("submit-cambiarRol-usuario").addEventListener('click', function() {

@@ -40,7 +40,7 @@
                         @endif
                         
                         
-                        <h3>Nombre {{$region['name']}}</h3>
+                        <h3>{{$region['name']}}</h3>
                         <h3>Cant de dispositivos: {{$region['cant_disp']}}</h3>
                         <h3>Estado: {{$region['estado']}}</h3>
                         @if(Auth::user()->id_estado != 2)

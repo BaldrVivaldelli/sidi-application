@@ -3,291 +3,247 @@
 @section('content')
 <style>
 
-h5{
-color: #9fa3a6;
-text-transform: uppercase;
-text-align: justify;
-vertical-align: middle;
-text-overflow: ellipsis;
-overflow: hidden;
+.postsDetalle{
+    margin: 0 3% 3% 0;
 }
-.postsDetalle article{
-	width: 90%;
-	
+.dato_cuatro img{
+    width: auto !important;
+    height: auto !important;
+    max-width: 600px;
+    max-height: 200px;
 }
-.postsDetalle article div{
-	height: 50em;
-	
+.dato_tres img{
+    width: auto !important;
+    height: auto !important;
+    max-width: 600px;
+    max-height: 200px;
 }
-.postsDetalle article a img{
-	width: auto;
-	
+.dato_dos img{
+    width: auto !important;
+    height: auto !important;
+    max-width: 600px;
+    max-height: 200px;
 }
-
-
-.region_tres_archivo_uno{
-	top: 0%;
-    width: 70%;
-    height: 40em !important;
-    margin: 0%;
-    display: inline-block;
-    padding: 0;
-    border-style: solid;
-    border-width: 4px
-
+section img{
+    width: auto !important;
+    height: auto !important;
+    max-width: 100%;
+    max-height: 100%;
 }
-.region_tres_archivo_uno a{
-	margin: 0;
-	max-height: 40em;
-
+h5{ 
+    font-size: clamp(2rem,5vh,5rem);
+    overflow-wrap: break-word;            
+    
 }
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #353535;
+    font-size: 3rem;
+    color: #fff;
+    box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
+    height: 100%;
+    width: 99%;
+    border-radius: 4px;
+    transition: all 500ms;
+    overflow: hidden;
+    margin: 0.5%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+ }
+  
 
-.region_tres_archivo_uno a img{
-	width: auto;
-	max-height: 40em;
-	height:auto;
-	margin: 20% 0;
-}
+@media (max-width: 360px){
+    .display_cuatro_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r1 r2"
+                            "r1 r1 r1 r2" 
+                            "r1 r1 r1 r3"
+                            "r4 r4 r4 r3";                         
+        grid-template-rows: 35% ;         
+        gap: 1rem;        
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 35pc !important;
+    }
 
-.region_tres_archivo_uno a video{
-	max-height: 40em;
-	width: 100%;
-	margin: 20% 0;
+    .display_tres_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r2"
+                            "r1 r1 r2" 
+                            "r1 r1 r3"
+                            "r1 r1 r3";                         
+        grid-template-rows: 35% ;                 
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 35pc !important;
+    }
+    .display_uno_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r1"
+                            "r1 r1 r1" 
+                            "r1 r1 r1"
+                            "r1 r1 r1";                         
+        grid-template-rows: 35% ;                 
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 35pc !important;
+    }
 
-}
-.region_tres_archivo_uno a iframe{
-	width: 100%;
-    height: 40em;
-	
-}
-
-
-
-
-
-
-
-
-.region_tres_archivo_dos{
-left: 70%;
-    width: 30%;
-    height: 20em !important;
-    position: absolute;
-    top: 0.000000000000001%;
-    float: right;
-    border-style: solid;
-    border-width: 4px
-}
-
-.region_tres_archivo_dos a{
-	margin: 0;
-	height: 20em;
-
-}
-.region_tres_archivo_dos a img{
-	width: auto;
-	max-height: 20em;
-	height:auto;
-	margin: 20% 0;
-}
-.region_tres_archivo_dos a video{
-	max-height: 20em;
-	width: 100%;
-	margin: 20% 0;
-
-}
-.region_tres_archivo_dos a iframe{
-	width: 100%;
-    height: 20em;
-	
-}
-
-
-
-
-
-
-.region_tres_archivo_tres{
-left: 70%;
-    width: 30%;
-    height: 20em !important;
-    position: absolute;
-    top: 40%;
-    float: right;
-    border-style: solid;
-    border-width: 4px
-}
-.region_tres_archivo_tres a{
-	margin: 0;
-	height: 20em;
-
+    .dato_tres img{
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+    .dato_dos img{
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
 }
 
-.region_tres_archivo_tres a img{
-	width: auto;
-	height: auto;
-	max-height: 20em;
-	margin: 20% 0;
+@media (min-width: 1360px){
+    .display_cuatro_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r1 r2"
+                            "r1 r1 r1 r2" 
+                            "r1 r1 r1 r3"
+                            "r4 r4 r4 r3";                         
+        grid-template-rows: 35% ;         
+        gap: 1rem;        
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 35pc !important;
+    }
+
+    .display_tres_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r2"
+                            "r1 r1 r2" 
+                            "r1 r1 r3"
+                            "r1 r1 r3";                         
+        grid-template-rows: 35% ;                 
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 35pc !important;
+    }
+    .display_uno_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r1"
+                            "r1 r1 r1" 
+                            "r1 r1 r1"
+                            "r1 r1 r1";                         
+        grid-template-rows: 35% ;                 
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 35pc !important;
+    }
+
+    .dato_tres img{
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+    .dato_dos img{
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
 }
 
-.region_tres_archivo_tres a video{
-	max-height: 20em;
-	width: 100%;
-	margin: 20% 0;
-
-}
-.region_tres_archivo_tres a iframe{
-	width: 100%;
-    height: 20em;
-	
-}
-
-
-
-.region_cuatro_archivo_uno{
-	top: 0%;
-    width: 60%;
-    height: 40em;
-	max-height: 40em !important;
-    margin: 0%;
-    display: inline-block;
-    padding: 0;
-    border-style: solid;
-    border-width: 4px
-
+.display_cuatro_template{
+    display: grid;
+    grid-template-areas:
+                        "r1 r1 r1 r2"
+                        "r1 r1 r1 r2" 
+                        "r1 r1 r1 r3"
+                        "r4 r4 r4 r3";                         
+    grid-template-rows: 35% ;         
+    gap: 1rem;        
+    grid-template-columns: repeat(1, minmax(240px, 1fr));
+    height: 55pc;
 }
 
-.region_cuatro_archivo_uno a{
-	margin: 0;
-	height: 40em;
+.display_tres_template{
+    display: grid;
+    grid-template-areas:
+                        "r1 r1 r2"
+                        "r1 r1 r2" 
+                        "r1 r1 r3"
+                        "r1 r1 r3";                         
+    grid-template-rows: 35% ;                 
+    grid-template-columns: repeat(1, minmax(240px, 1fr));
+    height: 55pc;
+}
+.display_uno_template{
+    display: grid;
+    grid-template-areas:
+                        "r1 r1 r1"
+                        "r1 r1 r1" 
+                        "r1 r1 r1"
+                        "r1 r1 r1";                         
+    grid-template-rows: 35% ;                 
+    grid-template-columns: repeat(1, minmax(240px, 1fr));
+    height: 55pc;
+}
+button {
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        background-color: transparent;
+        border-radius: 0.375em;
+        border: 0;
+        box-shadow: inset 0 0 0 2px #f56a6a;
+        color: #f56a6a !important;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Roboto Slab", serif;
+        font-size: 0.8em;
+        font-weight: 700;
+        height: 3.5em;
+        letter-spacing: 0.075em;
+        line-height: 3.5em;
+        padding: 0 2.25em;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+		position: absolute;
+		left: 2px;
+		bottom: 3px;
+    }
+.dato_uno{
+    grid-area:r1
+}
+.dato_dos{
+    grid-area:r2
+}
+.dato_tres{
+    grid-area:r3
+}
+.dato_cuatro{
+    grid-area:r4
 }
 
-.region_cuatro_archivo_uno a img{
-	max-height: 40em;
-	width: auto;
-    height: auto;
-	margin: 20% 0;
+.right_text {
+  position: relative;
+  z-index: 1;
+  font-family: Raleway;
+  font-size: large;
+  
+  justify-self: center;
+  align-self: center;
 }
-
-.region_cuatro_archivo_uno a video{
-	max-height: 40em;
-	
-
+.basic-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
-.region_cuatro_archivo_uno a iframe{
-	width: 100%;
-    height: 40em;
-	
-}
-
-
-.region_cuatro_archivo_dos{
-	left: 60%;
-    width: 30%;
-    height: 25em !important;
-	max-height: 25em;
-    position: absolute;
-    top: 0.000000000000001%;
-    float: right;
-    border-style: solid;
-    border-width: 4px
-}
-
-.region_cuatro_archivo_dos a{
-	margin: 0;
-	 height: 25em;
-
-}
-
-.region_cuatro_archivo_dos a img{
-	
-	max-height: 25em;
-	width: auto;
-    height: auto;
-	margin: 20% 0;
-}
-
-.region_cuatro_archivo_dos a video{
-	max-height: 25em;
-	width: 100%;
-	margin: 20% 0;
-
-}
-.region_cuatro_archivo_dos a iframe{
-	width: 100%;
-    height: 25em;
-	
-}
-
-
-.region_cuatro_archivo_tres{
-left: 60%;
-    width: 30%;
-    height: 25em !important;
-    position: absolute;
-    top: 50%;
-    float: right;
-    border-style: solid;
-    border-width: 4px
-}
-.region_cuatro_archivo_tres a img{
-	margin: 20% 0;
-	max-height: 25em;
-	width: auto;
-    height: auto;
-
-}
-.region_cuatro_archivo_tres a{
-	margin: 0;
-	max-height: 25em;
-}
-.region_cuatro_archivo_tres a video{
-	max-height: 25em;
-	width: 100%;
-	margin: 20% 0;
-
-}
-.region_cuatro_archivo_tres a iframe{
-	width: 100%;
-    height: 25em;
-	
-}
-
-
-
-.region_cuatro_archivo_cuatro{
-    width: 60%;
-    height: 10em !important;
-    position: absolute;
-    top: 80%;
-    float: right;
-    border-style: solid;
-    border-width: 4px
-}
-
-.region_cuatro_archivo_cuatro a img{
-	width: auto;
-	max-height: 10em;
-	margin: 20% 0;
-
-}
-.region_cuatro_archivo_cuatro a{
-	margin: 0;
-
-}
-.region_cuatro_archivo_cuatro a video{
-	max-height: 10em;
-
-}
-.region_cuatro_archivo_cuatro a iframe{
-	width: 100%;
-    height: 10em;
-	
-}
-
-
-
-
 </style>
 
 <div id="wrapper">
@@ -305,202 +261,201 @@ left: 60%;
                     <h2>Region {{$detalle_contenido['nombre_region']}}</h2>
                 </header>
                 <div class="postsDetalle">
-
-
-                    <article>
-
                         @if($region['region_size'] == "1")
+                        <div class ="display_uno_template">
+                            <section class ="card dato_uno"> 
                             @if( Illuminate\Support\Str::contains($region['archivoUnoTipo'], 'imag'))
-                            <a href="contendorTemplateUnoArchivoUno" class="image"><img class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}"></a>
+                            <a class="image"><img class="card dato_uno" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}"></a>
                             @elseif( Illuminate\Support\Str::contains($region['archivoUnoTipo'], 'texto'))
-                            <a href="#" class="image">
+                            <a href="#" class="card dato_uno">
                                 <h5>{{$region['archivoUnoTexto']}}</h5>
                             </a>
                             @else
                                 @if( Illuminate\Support\Str::contains($region['archivoUnoTipo'], 'video'))
-                                <a href="contendorTemplateUnoArchivoUno" class="image">
+                                <a class="image">
                                     <video>
-                                        <source class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}"> >
+                                        <source class="card dato_uno" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}"> >
                                     </video>
                                 </a>
                                 @else
-                                <a href="contendorTemplateUnoArchivoUno" class="image">
-                                    <iframe class="imgTemp" width="400" height="200" src="{{$region['archivoUnoUrl']}}">
-                                    </iframe>
-                                </a>
+                                <a class="image">
+                                    <iframe class="card dato_uno" width="400" height="200" src="{{$region['archivoUnoUrl']}}">
+                                        </iframe>
+                                    </a>
                                 @endif
                             @endif
+                            </section>
+                        </div>
                         @endif
                         @if($region['region_size'] == "3")
-                        <div class="contendor-general">
-                            <div class="region_tres_archivo_uno">
+                        <div class ="display_tres_template">
+                            <section class ="card dato_uno"> 
                                 @if( Illuminate\Support\Str::contains($region['archivoUnoTipo'], 'imag'))
-                                <a href="" class="image"><img class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}" width="400" height="10"></a>
+                                <a href="" class="card dato_uno"><img class="card dato_uno" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}" width="400" height="10"></a>
                                 @elseif( Illuminate\Support\Str::contains($region['archivoUnoTipo'], 'texto'))
-                                <a href="" class="image">
+                                <a href=""class="card dato_uno">
                                     <h5>{{$region['archivoUnoTexto']}}</h5>
                                 </a>
                                 @else
                                 @if( Illuminate\Support\Str::contains($region['archivoUnoTipo'], 'video'))
-                                <a href="" class="image">
+                                <a href=""class="card dato_uno">
                                     <video>
-                                        <source class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}"> >
+                                        <source class="card dato_uno" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}"> >
                                     </video>
                                 </a>
                                 @else
-                                <a href="" class="image">
-                                    <iframe class="imgTemp" src="{{$region['archivoUnoUrl']}}">
+                                <a href=""class="card dato_uno">
+                                    <iframe class="card dato_uno" src="{{$region['archivoUnoUrl']}}">
                                     </iframe>
                                 </a>
                                 @endif
                                 @endif
-                            </div>
-                            <div class="region_tres_archivo_dos">
+                            </section>
+                            <section class ="card dato_dos"> 
                                 @if( Illuminate\Support\Str::contains($region['archivoDosTipo'], 'imag'))
-                                <a href="" class="image"><img class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoDosUbicacion'] )}}" width="400" height="10"></a>
+                                <a href="" class="card dato_dos"><img class="card dato_dos" src="{{Storage::disk('s3')->url( $region['archivoDosUbicacion'] )}}" width="400" height="10"></a>
                                 @elseif( Illuminate\Support\Str::contains($region['archivoDosTipo'], 'texto'))
-                                <a href="" class="image">
+                                <a href="" class="card dato_dos">
                                     <h5>{{$region['archivoDosTexto']}}</h5>
                                 </a>
                                 @else
                                 @if( Illuminate\Support\Str::contains($region['archivoDosTipo'], 'video'))
-                                <a href="" class="image">
+                                <a href="" class="card dato_dos">
                                     <video>
-                                        <source class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoDosUbicacion'] )}}"> >
+                                        <source class="card dato_dos" src="{{Storage::disk('s3')->url( $region['archivoDosUbicacion'] )}}"> >
                                     </video>
                                 </a>
                                 @else
-                                <a href="" class="image">
-                                    <iframe class="imgTemp" src="{{$region['archivoDosUrl']}}">
+                                <a href="" class="card dato_dos">
+                                    <iframe class="card dato_dos" src="{{$region['archivoDosUrl']}}">
                                     </iframe>
                                 </a>
                                 @endif
                                 @endif
-                            </div>
-                            <div class="region_tres_archivo_tres">
+                            </section>
+                            <section class ="card dato_tres"> 
                                 @if( Illuminate\Support\Str::contains($region['archivoTresTipo'], 'imag'))
-                                <a href="" class="image"><img class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoTresUbicacion'] )}}" width="200" height="10"></a>
+                                <a href="" class="card dato_tres"><img class="card dato_tres" src="{{Storage::disk('s3')->url( $region['archivoTresUbicacion'] )}}" width="200" height="10"></a>
                                 @elseif( Illuminate\Support\Str::contains($region['archivoTresTipo'], 'texto'))
-                                <a href="" class="image">
+                                <a href="" class="card dato_tres">
                                     <h5>{{$region['archivoTresTexto']}}</h5>
                                 </a>
                                 @else
                                 @if( Illuminate\Support\Str::contains($region['archivoTresTipo'], 'video'))
-                                <a href="" class="image">
+                                <a href="" class="card dato_tres">
                                     <video>
-                                        <source class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoTresUbicacion'] )}}"> >
+                                        <source class="card dato_tres" src="{{Storage::disk('s3')->url( $region['archivoTresUbicacion'] )}}"> >
                                     </video>
                                 </a>
                                 @else
-                                <a href="" class="image">
-                                    <iframe class="imgTemp" src="{{$region['archivoTresUrl']}}">
+                                <a href="" class="card dato_tres">
+                                    <iframe class="card dato_tres" src="{{$region['archivoTresUrl']}}">
                                     </iframe>
                                 </a>
                                 @endif
                                 @endif
-                            </div>
+                            </section>
                         </div>
                         @endif
                         @if($region['region_size'] == "4")
 
-                        <div class="contendor-general">
-                            <div class="region_cuatro_archivo_uno">
+                        <div class ="display_cuatro_template">
+                            <section class ="card dato_uno"> 
                                 @if( Illuminate\Support\Str::contains($region['archivoUnoTipo'], 'imag'))
-                                <a href="" class="image"><img class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}" width="400" height="10"></a>
+                                <a href="" class="card dato_uno"><img class="card dato_uno" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}" width="400" height="10"></a>
                                 @elseif( Illuminate\Support\Str::contains($region['archivoUnoTipo'], 'texto'))
                                 <a>
                                     <h5>{{$region['archivoUnoTexto']}}</h5>
                                 </a>
                                 @else
                                 @if( Illuminate\Support\Str::contains($region['archivoUnoTipo'], 'video'))
-                                <a href="" class="image">
+                                <a href="" class="card dato_uno">
                                     <video>
-                                        <source class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}"> >
+                                        <source class="card dato_uno" src="{{Storage::disk('s3')->url( $region['archivoUnoUbicacion'] )}}"> >
                                     </video>
                                 </a>
                                 @else
-                                <a href="" class="image">
-                                    <iframe class="imgTemp" src="{{$region['archivoUnoUrl']}}">
+                                <a href="" class="card dato_uno">
+                                    <iframe class="card dato_uno" src="{{$region['archivoUnoUrl']}}">
                                     </iframe>
                                 </a>
                                 @endif
                                 @endif
-                            </div>
-                            <div class="region_cuatro_archivo_dos">
+                            </section>
+                            <section class ="card dato_dos"> 
                                 @if( Illuminate\Support\Str::contains($region['archivoDosTipo'], 'imag'))
-                                <a href="" class="image"><img class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoDosUbicacion'] )}}" width="400" height="10"></a>
+                                <a href="" class="card dato_dos"><img class="card dato_dos" src="{{Storage::disk('s3')->url( $region['archivoDosUbicacion'] )}}" width="400" height="10"></a>
                                 @elseif( Illuminate\Support\Str::contains($region['archivoDosTipo'], 'texto'))
-                                <a href="" class="image">
+                                <a href="" class="card dato_dos">
                                     <h5>{{$region['archivoDosTexto']}}</h5>
                                 </a>
                                 @else
-                                @if( Illuminate\Support\Str::contains($region['archivoDosTipo'], 'video'))
-                                <a href="" class="image">
-                                    <video>
-                                        <source class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoDosUbicacion'] )}}"> >
-                                    </video>
-                                </a>
-                                @else
-                                <a href="" class="image">
-                                    <iframe class="imgTemp" src="{{$region['archivoDosUrl']}}">
-                                    </iframe>
-                                </a>
-                                @endif
+                                    @if( Illuminate\Support\Str::contains($region['archivoDosTipo'], 'video'))
+                                    <a href="" class="card dato_dos">
+                                        <video>
+                                            <source class="card dato_dos" src="{{Storage::disk('s3')->url( $region['archivoDosUbicacion'] )}}"> >
+                                        </video>
+                                    </a>
+                                    @else
+                                    <a href="" class="card dato_dos">
+                                        <iframe class="card dato_dos" src="{{$region['archivoDosUrl']}}">
+                                        </iframe>
+                                    </a>
+                                    @endif
                                 @endif
 
-                            </div>
-                            <div class="region_cuatro_archivo_tres">
+                            </section>
+                            <section class ="card dato_tres"> 
                                 @if( Illuminate\Support\Str::contains($region['archivoTresTipo'], 'imag'))
-                                <a href="" class="image"><img class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoTresUbicacion'] )}}" width="200" height="10"></a>
+                                <a href="" class="card dato_tres"><img class="card dato_tres" src="{{Storage::disk('s3')->url( $region['archivoTresUbicacion'] )}}" width="200" height="10"></a>
                                 @elseif( Illuminate\Support\Str::contains($region['archivoTresTipo'], 'texto'))
-                                <a href="" class="image">
+                                <a href="" class="card dato_tres">
                                     <h5>{{$region['archivoTresTexto']}}</h5>
                                 </a>
                                 @else
-                                @if( Illuminate\Support\Str::contains($region['archivoTresTipo'], 'video'))
-                                <a href="" class="image">
-                                    <video>
-                                        <source class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoTresUbicacion'] )}}"> >
-                                    </video>
-                                </a>
-                                @else
-                                <a href="" class="image">
-                                    <iframe class="imgTemp" src="{{$region['archivoTresUrl']}}">
-                                    </iframe>
-                                </a>
+                                    @if( Illuminate\Support\Str::contains($region['archivoTresTipo'], 'video'))
+                                    <a href="" class="card dato_tres">
+                                        <video>
+                                            <source class="card dato_tres" src="{{Storage::disk('s3')->url( $region['archivoTresUbicacion'] )}}"> >
+                                        </video>
+                                    </a>
+                                    @else
+                                    <a href="" class="card dato_tres">
+                                        <iframe class="card dato_tres" src="{{$region['archivoTresUrl']}}">
+                                        </iframe>
+                                    </a>
+                                    @endif
                                 @endif
-                                @endif
-
-                            </div>
-                            <div class="region_cuatro_archivo_cuatro">
+                            </section>
+                            <section class ="card dato_cuatro"> 
                                 @if( Illuminate\Support\Str::contains($region['archivoCuatroTipo'], 'imag'))
-                                <a href="" class="image"><img class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoCuatroUbicacion'] )}}" width="200" height="10"></a>
+                                <a href="" class="card dato_cuatro"><img class="card dato_cuatro" src="{{Storage::disk('s3')->url( $region['archivoCuatroUbicacion'] )}}" width="200" height="10"></a>
                                 @elseif( Illuminate\Support\Str::contains($region['archivoCuatroTipo'], 'texto'))
-                                <a href="" class="image">
+                                <a href="" class="card dato_cuatro">
                                     <h5>{{$region['archivoCuatroTexto']}}</h5>
                                 </a>
                                 @else
                                 @if( Illuminate\Support\Str::contains($region['archivoCuatroTipo'], 'video'))
-                                <a href="" class="image">
+                                <a href="" class="card dato_cuatro">
                                     <video>
-                                        <source class="imgTemp" src="{{Storage::disk('s3')->url( $region['archivoCuatroUbicacion'] )}}"> >
+                                        <source class="card dato_cuatro" src="{{Storage::disk('s3')->url( $region['archivoCuatroUbicacion'] )}}"> >
                                     </video>
                                 </a>
                                 @else
-                                <a href="" class="image">
-                                    <iframe class="imgTemp" src="{{$region['archivoCuatroUrl']}}">
+                                <a href="" class="card dato_cuatro">
+                                    <iframe class="card dato_cuatro" src="{{$region['archivoCuatroUrl']}}">
                                     </iframe>
                                 </a>
                                 @endif
                                 @endif
 
-                            </div>
+                            </section>
                         </div>
-
+                </div>
                         @endif
 
                         <!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a> -->
-                    </article>
+                    </div>                    
                     <article>
                         <h2>Listado de dispositivos</h2>
                         <hr />
@@ -516,7 +471,6 @@ left: 60%;
                             @endif -->
                         @endforeach
                     </article>
-                </div>
             </section>
         </div>
     </div>

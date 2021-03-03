@@ -2,23 +2,201 @@
 <html>
 
 
-<style>
-h5{
-	font-size:2em;
-	line-height: 75%;
-	text-indent: 40px;
-	word-wrap: break-word;
+<style>  
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+body {
+    color: #fff;
+    font-family: 'Noto Sans', sans-serif;
 }
 
-.container{
-	width: 100%;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+.dato_cuatro img{
+    width: auto !important;
+    height: auto !important;
+    max-width: 600px;
+    max-height: 200px;
+}
+.dato_tres img{
+    width: auto !important;
+    height: auto !important;
+    max-width: 600px;
+    max-height: 200px;
+}
+.dato_dos img{
+    width: auto !important;
+    height: auto !important;
+    max-width: 600px;
+    max-height: 200px;
+}
+section img{
+    width: auto !important;
+    height: auto !important;
+    max-width: 100%;
+    max-height: 100%;
+}
+h5{ 
+    font-size: clamp(2rem,5vh,5rem);
+    overflow-wrap: break-word;            
+    
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #353535;
+    font-size: 3rem;
+    color: #fff;
+    box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
+    height: 100%;
+    width: 99%;
+    border-radius: 4px;
+    transition: all 500ms;
+    overflow: hidden;
+    margin: 0.5%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+ }
+  
+
+@media (max-width: 360px){
+    .display_cuatro_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r1 r2"
+                            "r1 r1 r1 r2" 
+                            "r1 r1 r1 r3"
+                            "r4 r4 r4 r3";                         
+        grid-template-rows: 35% ;         
+        gap: 1rem;        
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 35pc !important;
+    }
+
+    .display_tres_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r2"
+                            "r1 r1 r2" 
+                            "r1 r1 r3"
+                            "r1 r1 r3";                         
+        grid-template-rows: 35% ;                 
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 35pc !important;
+    }
+    .display_uno_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r1"
+                            "r1 r1 r1" 
+                            "r1 r1 r1"
+                            "r1 r1 r1";                         
+        grid-template-rows: 35% ;                 
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 35pc !important;
+    }
+
+    .dato_tres img{
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+    .dato_dos img{
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+}
+
+@media (min-width: 1366px){
+    .display_cuatro_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r1 r2"
+                            "r1 r1 r1 r2" 
+                            "r1 r1 r1 r3"
+                            "r4 r4 r4 r3";                         
+        grid-template-rows: 35% ;         
+        gap: 1rem;        
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 55pc !important;
+    }
+
+    .display_tres_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r2"
+                            "r1 r1 r2" 
+                            "r1 r1 r3"
+                            "r1 r1 r3";                         
+        grid-template-rows: 35% ;                 
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 55pc !important;
+    }
+    .display_uno_template{
+        display: grid;
+        grid-template-areas:
+                            "r1 r1 r1"
+                            "r1 r1 r1" 
+                            "r1 r1 r1"
+                            "r1 r1 r1";                         
+        grid-template-rows: 35% ;                 
+        grid-template-columns: repeat(1, minmax(240px, 1fr));
+        height: 55pc !important;
+    }
+
+    .dato_tres img{
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+    .dato_dos img{
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+}
+
+.display_cuatro_template{
+    display: grid;
+    grid-template-areas:
+                        "r1 r1 r1 r2"
+                        "r1 r1 r1 r2" 
+                        "r1 r1 r1 r3"
+                        "r4 r4 r4 r3";                         
+    grid-template-rows: 35% ;         
+    gap: 1rem;        
+    grid-template-columns: repeat(1, minmax(240px, 1fr));
+    height: 35pc;
+}
+
+.display_tres_template{
+    display: grid;
+    grid-template-areas:
+                        "r1 r1 r2"
+                        "r1 r1 r2" 
+                        "r1 r1 r3"
+                        "r1 r1 r3";                         
+    grid-template-rows: 35% ;                 
+    grid-template-columns: repeat(1, minmax(240px, 1fr));
+    height: 35pc;
+}
+.display_uno_template{
+    display: grid;
+    grid-template-areas:
+                        "r1 r1 r1"
+                        "r1 r1 r1" 
+                        "r1 r1 r1"
+                        "r1 r1 r1";                         
+    grid-template-rows: 35% ;                 
+    grid-template-columns: repeat(1, minmax(240px, 1fr));
+    height: 35pc;
 }
 button {
         transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -44,779 +222,32 @@ button {
 		left: 2px;
 		bottom: 3px;
     }
-	
-	
-.region_uno_archivo_uno {
-    top: 0%;
-    width: 120em;
-    height: 37em;
-    margin: 0%;
-    padding: 0;
-    display: table-cell;
-    vertical-align: middle;
-    border-style: solid;
-    border-width: 4px;
-    }
-	
-	
-.region_uno_archivo_uno a{
-	margin: 0;
-	max-height: 50em;
-
+.dato_uno{
+    grid-area:r1
+}
+.dato_dos{
+    grid-area:r2
+}
+.dato_tres{
+    grid-area:r3
+}
+.dato_cuatro{
+    grid-area:r4
 }
 
-.region_uno_archivo_uno img{
-	width: auto;
-	max-height: 37em;
-	height:auto;
-	display:block;
-	margin:auto;
-	
+.right_text {
+  position: relative;
+  z-index: 1;
+  font-family: Raleway;
+  font-size: large;
+  
+  justify-self: center;
+  align-self: center;
 }
-
-.region_uno_archivo_uno video{
-	max-height: 37em;
-	width: 100%;
-	margin: 20% 0;
-
-}
-.region_uno_archivo_uno iframe{
-	width: 100%;
-    height: 37em;
-	
-}
-
-
-
-    .region_tres_archivo_uno {
-    top: 0%;
-    width: 59em;
-    height: 37em;
-    margin: 0%;
-    padding: 0;
-    display: table-cell;
-    vertical-align: middle;
-    border-style: solid;
-    border-width: 4px;
-    }
-
-.region_tres_archivo_uno a{
-	margin: 0;
-	max-height: 50em;
-
-}
-
-.region_tres_archivo_uno img{
-	width: auto;
-	max-height: 37em;
-	height:auto;
-	display:block;
-	margin:auto;
-	
-}
-
-.region_tres_archivo_uno video{
-	max-height: 50em;
-	width: 100%;
-	margin: 20% 0;
-
-}
-.region_tres_archivo_uno iframe{
-	width: 100%;
-    height: 50em;
-	
-}
-
-
-
-
-    .region_tres_archivo_dos {
-    left: 70%;
-    width: 29%;
-    height: 20em;
-    position: absolute;
-    top: 0.97%;
-    float: right;
-    border-style: solid;
-    }
-
-    .region_tres_archivo_dos img {
-
-    width: auto;
-	max-height: 18em;
-	height:auto;
-	max-width: 100%;
-	display:block;
-	margin:auto;
-
-    }
-
-.region_tres_archivo_dos video{
-	max-height: 18em;
-    width: auto;
-    max-width: 100%;
-	margin: 5% 0;
-
-}
-.region_tres_archivo_dos iframe{
-	width: 100%;
-   height: 18em;
-	
-}
-
-
-
-
-
-    .region_tres_archivo_tres {
-    left: 70%;
-    width: 29%;
-    height: 17em;
-    position: absolute;
-    top: 50%;
-    float: right;
-    border-style: solid;
-    }
-
-    .region_tres_archivo_tres img {
-    width: auto;
-	max-height: 17em;
-	height:auto;
-	max-width: 100%;
-	display:block;
-	margin:auto;
-
-    }
-	.region_tres_archivo_tres video{
-	max-height: 17em;
-    width: auto;
-    max-width: 100%;
-	margin: 5% 0;
-	
-
-}
-.region_tres_archivo_tres iframe{
-	width: 100%;
-    height: 17em;
-	max-width:29%;
-	
-}
-	
-	
-
-    /* region cuatro */
-
-    .region_cuatro_archivo_uno {
-    top: 0%;
-    width: 70%;
-    height: 30em;
-    margin: 0%;
-    display: inline-block;
-    padding: 0;
-    border-style: solid
-    }
-    .region_cuatro_archivo_uno img {
-    width: auto;
-	max-height: 30em;
-	height:auto;
-	max-width: 100%;
-	margin:auto;
-
-    }
-	.region_cuatro_archivo_uno video{
-	max-height: 30em;
-    width: auto;
-    max-width:70%;
-	margin: 5% 0;
-	
-
-}
-.region_cuatro_archivo_uno iframe{
-	width: 100%;
-    height: 30em;
-	max-width:100%;
-	
-}
-
-    .region_cuatro_archivo_dos {
-        
-   left: 70%;
-    width: 29%;
-    height: 50%;
-    position: absolute;
-    top: 1.2%;
-    float: right;
-    border-style: solid;
-
-    }
-.region_cuatro_archivo_dos iframe{
-height: 20.7em;
-max-height: 20.7em;
-width: 29%;
-}
-
-    .region_cuatro_archivo_dos img {
-        width: auto;
-	max-height:  20.7em;
-	height:auto;
-	max-width: 100%;
-	margin:auto;
-    }
-
-	.region_cuatro_archivo_dos video{
-	height: 20.7em;
-	max-height: 20.7em;
-	width: 100%
-	}
-
-
-
-
-    .region_cuatro_archivo_tres {
-   left: 70%;
-    width: 29%;
-    height: 40.2%;
-    position: absolute;
-    top: 52%;
-    float: right;
-    border-style: solid;
-    }
-
-.region_cuatro_archivo_tres iframe{
-	height: 20.7em;
-	max-height: 20.7em;
-	width: 29%;
-}
-
-.region_cuatro_archivo_tres img {
-    width: auto;
-	max-height:  20.7em;
-	height:auto;
-	max-width: 100%;
-	margin:auto;
-	
-    }
-
-.region_cuatro_archivo_tres video{
-	height: 20.7em;
-	max-height: 20.7em;
-	width: 100%
-	}
-
-    .region_cuatro_archivo_cuatro {
-    width: 69.3%;
-    height: 17.3%;
-    position: absolute;
-    top: 75%;
-    float: right;
-    border-style: solid;
-    }
-
-    .region_cuatro_archivo_cuatro img {
-        width: auto;
-		max-height: 17.3%;
-		margin:auto;
-    }
-
-    a {
-        display: block;
-        padding: 1%;
-        font-family: "Roboto Slab", serif;
-        font-weight: 700;
-        line-height: 1.5;
-    }
-	
-	
-/*MOVILE------------------------------------------------------------------------------------------------------------ */
-	
-@media (max-width: 360px){
-
-.container{
-	width: 100%;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-button {
-        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-        background-color: transparent;
-        border-radius: 0.375em;
-        border: 0;
-        box-shadow: inset 0 0 0 2px #f56a6a;
-        color: #f56a6a !important;
-        cursor: pointer;
-        display: inline-block;
-        font-family: "Roboto Slab", serif;
-        font-size: 0.8em;
-        font-weight: 700;
-        height: 3.5em;
-        letter-spacing: 0.075em;
-        line-height: 3.5em;
-        padding: 0 2.25em;
-        text-align: center;
-        text-decoration: none;
-        text-transform: uppercase;
-        white-space: nowrap;
-		position: absolute;
-		left: 0;
-		bottom: 0px;
-    }
-	
-/*REGION UNO------------------------------------------------------------------------------------------------------------ */	
-.region_uno_archivo_uno {
-    top: 0%;
-    width: 120em;
-    height: 37em;
-    margin: 0%;
-    padding: 0;
-    display: table-cell;
-    vertical-align: middle;
-    
-    }
-	
-	
-.region_uno_archivo_uno a{
-	margin: 0;
-	max-height: 50em;
-
-}
-
-.region_uno_archivo_uno img{
-	width: auto;
-	max-height: 37em;
-	height:auto;
-	display:block;
-	margin:auto;
-	
-}
-
-.region_uno_archivo_uno video{
-	max-height: 37em;
-	width: 100%;
-	margin: 20% 0;
-
-}
-.region_uno_archivo_uno iframe{
-	width: 100%;
-    height: 37em;
-	
-}
-
-
-/*REGION TRES------------------------------------------------------------------------------------------------------------ */	
-    .region_tres_archivo_uno {
-    top: 0%;
-    width: 16em;
-    height: 37em;
-    margin: 0%;
-    padding: 0;
-    display: table-cell;
-    vertical-align: middle;
-    border-style: hidden;
-    }
-
-.region_tres_archivo_uno a{
-	margin: 0;
-	max-height: 50em;
-
-}
-
-.region_tres_archivo_uno img{
-	width: auto;
-	max-height: 37em;
-	height:auto;
-	display:block;
-	margin:auto;
-	
-}
-
-.region_tres_archivo_uno video{
-	max-height: 50em;
-	width: 100%;
-	margin: 20% 0;
-
-}
-.region_tres_archivo_uno iframe{
-	width: 100%;
-    height: 50em;
-	
-}
-
-
-
-
-    .region_tres_archivo_dos {
-    left: 70%;
-    width: 29%;
-    width: 6.2em;
-    position: absolute;
-    top: 0.97%;
-    float: right;
-    border-style: hidden;
-    }
-
-    .region_tres_archivo_dos img {
-
-    width: auto;
-	max-height: 18em;
-	height:auto;
-	max-width: 100%;
-	display:block;
-	margin:auto;
-
-    }
-
-.region_tres_archivo_dos video{
-	max-height: 18em;
-    width: auto;
-    max-width: 100%;
-	margin: 5% 0;
-
-}
-.region_tres_archivo_dos iframe{
-	width: 100%;
-   height: 18em;
-	
-}
-
-
-
-
-
-    .region_tres_archivo_tres {
-    left: 70%;
-    width: 6.2em;
-    height: 17em;
-    position: absolute;
-    top: 50%;
-    float: right;
-    border-style: hidden;
-    }
-
-    .region_tres_archivo_tres img {
-    width: auto;
-	max-height: 17em;
-	height:auto;
-	max-width: 100%;
-	display:block;
-	margin:auto;
-
-    }
-	.region_tres_archivo_tres video{
-	max-height: 17em;
-    width: auto;
-    max-width: 100%;
-	margin: 5% 0;
-	
-
-}
-.region_tres_archivo_tres iframe{
-	width: 100%;
-    height: 17em;
-	max-width:29%;
-	
-}
-	
-	
-
-   
-/*REGION CUATRO------------------------------------------------------------------------------------------------------------ */	
-
-    .region_cuatro_archivo_uno {
-    top: 0%;
-    width: 70%;
-    height: 29.3em;
-    margin: 0%;
-    display: inline-block;
-    padding: 0;
-    border-style: hidden;
-    }
-    .region_cuatro_archivo_uno img {
-    width: auto;
-	max-height: 29.3em;
-	height:auto;
-	max-width: 100%;
-	margin:auto;
-
-    }
-	.region_cuatro_archivo_uno video{
-	max-height: 29.3em;
-    width: auto;
-    max-width:70%;
-	margin: 5% 0;
-	
-
-}
-.region_cuatro_archivo_uno iframe{
-	width: 100%;
-    height: 29.3em;
-	max-width:100%;
-	
-}
-
-    .region_cuatro_archivo_dos {
-        
-   left: 70%;
-    width: 29%;
-    width: 11.8em;
-    position: absolute;
-    top: 1.2%;
-    float: right;
- border-style: hidden;
-
-    }
-.region_cuatro_archivo_dos iframe{
-height: 20.7em;
-max-height: 20.7em;
-width: 29%;
-}
-
-    .region_cuatro_archivo_dos img {
-        width: auto;
-	max-height:  20.7em;
-	height:auto;
-	max-width: 100%;
-	margin:auto;
-    }
-
-	.region_cuatro_archivo_dos video{
-	height: 20.7em;
-	max-height: 20.7em;
-	width: 100%
-	}
-
-
-
-
-    .region_cuatro_archivo_tres {
-   left: 70%;
-    width: 29%;
-    width: 11.8em;
-    position: absolute;
-    top: 52%;
-    float: right;
-  border-style: hidden;
-    }
-
-.region_cuatro_archivo_tres iframe{
-	height: 20.7em;
-	max-height: 20.7em;
-	width: 29%;
-}
-
-.region_cuatro_archivo_tres img {
-    width: auto;
-	max-height:  20.7em;
-	height:auto;
-	max-width: 100%;
-	margin:auto;
-	
-    }
-
-.region_cuatro_archivo_tres video{
-	height: 20.7em;
-	max-height: 20.7em;
-	width: 100%
-	}
-
-    .region_cuatro_archivo_cuatro {
-    width: 66%;
-    height: 17.3%;
-    position: absolute;
-    top: 75%;
-    float: right;
-    
-    }
-
-    .region_cuatro_archivo_cuatro img {
-        width: auto;
-		max-height: 17.3%;
-		margin:auto;
-    }
-
-    a {
-        display: block;
-        padding: 1%;
-        font-family: "Roboto Slab", serif;
-        font-weight: 700;
-        line-height: 1.5;
-    }
-	
-
-.region_tres_archivo_dos iframe{
-	width: 100%;
-   height: 18em;
-	
-}
-
-
-
-
-
-    .region_tres_archivo_tres {
-    left: 70%;
-    width: 6.2em;
-    height: 17em;
-    position: absolute;
-    top: 50%;
-    float: right;
-    border-style: hidden;
-    }
-
-    .region_tres_archivo_tres img {
-    width: auto;
-	max-height: 17em;
-	height:auto;
-	max-width: 100%;
-	display:block;
-	margin:auto;
-
-    }
-	.region_tres_archivo_tres video{
-	max-height: 17em;
-    width: auto;
-    max-width: 100%;
-	margin: 5% 0;
-	
-
-}
-.region_tres_archivo_tres iframe{
-	width: 100%;
-    height: 17em;
-	max-width:29%;
-	
-}
-	
-	
-
-   
-/*REGION CUATRO------------------------------------------------------------------------------------------------------------ */	
-
-    .region_cuatro_archivo_uno {
-    top: 0%;
-    width: 70%;
-    height: 29.3em;
-    margin: 0%;
-    display: inline-block;
-    padding: 0;
-    border-style: hidden;
-    }
-    .region_cuatro_archivo_uno img {
-    width: auto;
-	max-height: 29.3em;
-	height:auto;
-	max-width: 100%;
-	margin:auto;
-
-    }
-	.region_cuatro_archivo_uno video{
-	max-height: 29.3em;
-    width: auto;
-    max-width:70%;
-	margin: 5% 0;
-	
-
-}
-.region_cuatro_archivo_uno iframe{
-	width: 100%;
-    height: 29.3em;
-	max-width:100%;
-	
-}
-
-    .region_cuatro_archivo_dos {
-        
-   left: 70%;
-    width: 29%;
-    width: 6.5em;
-    position: absolute;
-    top: 1.2%;
-    float: right;
- border-style: hidden;
-
-    }
-.region_cuatro_archivo_dos iframe{
-height: 20.7em;
-max-height: 20.7em;
-width: 29%;
-}
-
-    .region_cuatro_archivo_dos img {
-        width: auto;
-	max-height:  20.7em;
-	height:auto;
-	max-width: 100%;
-	margin:auto;
-    }
-
-	.region_cuatro_archivo_dos video{
-	height: 20.7em;
-	max-height: 20.7em;
-	width: 100%
-	}
-
-
-
-
-    .region_cuatro_archivo_tres {
-   left: 70%;
-    
-    width: 6.5em;
-    position: absolute;
-    top: 52%;
-    float: right;
-  border-style: hidden;
-    }
-
-.region_cuatro_archivo_tres iframe{
-	height: 20.7em;
-	max-height: 20.7em;
-	width: 29%;
-}
-
-.region_cuatro_archivo_tres img {
-    width: auto;
-	max-height:  20.7em;
-	height:auto;
-	max-width: 100%;
-	margin:auto;
-	
-    }
-
-.region_cuatro_archivo_tres video{
-	height: 20.7em;
-	max-height: 20.7em;
-	width: 100%
-	}
-
-    .region_cuatro_archivo_cuatro {
-    width: 66%;
-    height: 17.3%;
-    position: absolute;
-    top: 75%;
-    float: right;
-    border-style: hidden;
-    }
-
-    .region_cuatro_archivo_cuatro img {
-        width: auto;
-		max-height: 17.3%;
-		margin:auto;
-    }
-
-    a {
-        display: block;
-        padding: 1%;
-        font-family: "Roboto Slab", serif;
-        font-weight: 700;
-        line-height: 1.5;
-    }
-	
-	
+.basic-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
 </style>
 
@@ -834,7 +265,7 @@ width: 29%;
     <a id="map-link" target="_blank"></a> -->
 
 
-    <div id="container">
+    <div class="basic-grid" id="container">
     </div>
     <!-- <video controls="controls" preload="auto" id="_video" width="640" height="360" autoplay="autoplay" loop="loop"></video>
 
@@ -856,6 +287,7 @@ width: 29%;
                 a.appendChild(link);
                 a.title = contenido;
                 a.href = url;
+                a.className ="card"
                 a.addEventListener('click', showContentFromUrl);
                 document.body.appendChild(a);
             })
@@ -912,6 +344,7 @@ width: 29%;
         document.body.innerHTML = '';
         var containerDiv = document.createElement("div");
         containerDiv.id = "container";
+        // containerDiv.className = "display_cuatro_template"
         document.body.appendChild(containerDiv);
 
         //se crea el boton de vuelta
@@ -961,6 +394,14 @@ width: 29%;
             var response = JSON.parse(e.data);
             console.log('el numero de session es el siguiente : ' + response.numero_session);
             console.log(response);
+            // if(response.region_size == "region_cuatro"){
+            //     document.getElementById("container").classList.add("display_cuatro_template");
+            // }else if(response.region_size == "region_tres"){
+            //     document.getElementById("container").classList.add("display_tres_template");
+            // }else{
+            //     document.getElementById("container").classList.add("display_uno_template");
+            // }
+            updateContainerValue(document.getElementById("container"),response.region_size);
             switch (response.type) {
                 case "snapshot":
                     console.log('volvio el contenido ')
@@ -975,10 +416,28 @@ width: 29%;
                         // var className = "region_uno_archivo_uno";
                         var className = json.region_size + "_archivo_" + json.numeroDeCuadro;
                         
-                        section.className = className;                        
-                        var dynLbl = document.createElement('H5');
+                        section.className += className;    
+                        
+                        //voy a preguntar si existen otros elementos predecesores, en caso de ser asi voy a ver si es el primer, segundo, tercer o cuarto elemento que ingresa
+                        // if(json.numeroDeCuadro ==="uno"){                            
+                        //     section.className += " card dato_uno right_text"                    
+                        // }
+                        // if (json.numeroDeCuadro === "dos"){
+                        //     section.className += " card dato_dos right_text"                    
+
+                        // }
+                        // if (json.numeroDeCuadro === "tres"){
+                        //     section.className += " card dato_tres right_text"                    
+                        // }
+                        // if (json.numeroDeCuadro === "cuatro"){
+                        //     section.className += " card dato_cuatro right_text"                    
+                        // }
+                        placeValueInTemplate(section,json.numeroDeCuadro);    
+                        var dynLbl = document.createElement('h5');
                         dynLbl.innerHTML  = textValue;
                         dynLbl.className = className + "_data";
+                        placeValueInTemplate(dynLbl,json.numeroDeCuadro);    
+
                         document.getElementById("container").appendChild(section);
                         section.appendChild(dynLbl);
 
@@ -986,14 +445,17 @@ width: 29%;
                         var section = document.createElement('section')
                         // var className = "region_uno_archivo_uno";
                         var className = json.region_size + "_archivo_" + json.numeroDeCuadro;
-                        section.className = className;
+                        section.className += className;    
+                        placeValueInTemplate(section,json.numeroDeCuadro);    
+                        var dynIframe = document.createElement('iframe');
+                        dynIframe.className = className + "_data";
+                        dynIframe.src = json.archivo_nombre +"?autoplay=1&mute=1&enablejsapi=1";
+                        dynIframe.autoplay = 1;
+            
+                        placeValueInTemplate(dynIframe,json.numeroDeCuadro);    
 
-                        var dynImg = document.createElement('iframe');
-                        dynImg.className = className + "_data";
-                        dynImg.src = json.archivo_nombre +"?autoplay=1&mute=1&enablejsapi=1";
-                        dynImg.autoplay = 1;
                         document.getElementById("container").appendChild(section);
-                        section.appendChild(dynImg);
+                        section.appendChild(dynIframe);
 
                     } else {
                         //var url = "http://192.168.1.100:90/api/contenido/getById/" + json.archivo_nombre;
@@ -1008,24 +470,7 @@ width: 29%;
                     break;
                 case "updateDisplay":
 
-                    // console.log('Se va a borrar todo el contenido para poder actualizar');
-                    // console.log('el contenido que se desea ver despues es el siguiente ' + this.href);
 
-                    // document.body.innerHTML = '';
-                    // var containerDiv = document.createElement("div");
-                    // containerDiv.id = "container";
-                    // document.body.appendChild(containerDiv);
-
-                    // console.log('se actualiza el contenido ')
-                    // console.log(e)
-                    // var json = JSON.parse(e.data);
-                    // var url = "https://sidi.dev/api/contenido/getById/" + json.archivo_nombre;
-                    // var response = fetch(url)
-                    //     .then(resp => resp.blob())
-                    //     .then(blob => {
-                    //         console.log(blob.type);
-                    //         updateContentData(blob, url, json.region_size, json.numeroDeCuadro);
-                    //     });
                     
                     var json = JSON.parse(e.data);                    
                     console.log('se actualizo el contenido ')
@@ -1054,6 +499,8 @@ width: 29%;
                         var containerDiv = document.createElement("div");
                         containerDiv.id = "container";
                         document.body.appendChild(containerDiv);
+                        updateContainerValue(document.getElementById("container"),cantidadDeCuatros);
+
                         console.log('se actualiza el contenido ')
                         console.log(e)
                         cuadrosActuales = 1;
@@ -1065,10 +512,14 @@ width: 29%;
                         var section = document.createElement('section')
                         // var className = "region_uno_archivo_uno";
                         var className = json.region_size + "_archivo_" + json.numeroDeCuadro;
-                        section.className = className;                        
-                        var dynLbl = document.createElement('H5');
+
+                        
+                        section.className = className;   
+                        placeValueInTemplate(section,json.numeroDeCuadro);                                 
+                        var dynLbl = document.createElement('h5');
                         dynLbl.innerHTML  = textValue;
                         dynLbl.className = className + "_data";
+                        placeValueInTemplate(dynLbl,json.numeroDeCuadro);             
                         document.getElementById("container").appendChild(section);
                         section.appendChild(dynLbl);
 
@@ -1077,12 +528,13 @@ width: 29%;
                         // var className = "region_uno_archivo_uno";
                         var className = json.region_size + "_archivo_" + json.numeroDeCuadro;
                         section.className = className;
-
-                        var dynImg = document.createElement('iframe');
-                        dynImg.className = className + "_data";
-                        dynImg.src = json.archivo_nombre +"?autoplay=1&mute=1&enablejsapi=1";
-                        dynImg.autoplay = 1;
-                        dynImg.muted = 1;
+                        placeValueInTemplate(section,json.numeroDeCuadro);                        
+                        var iframe = document.createElement('iframe');
+                        iframe.className = className + "_data";
+                        placeValueInTemplate(iframe,json.numeroDeCuadro);                        
+                        iframe.src = json.archivo_nombre +"?autoplay=1&mute=1&enablejsapi=1";
+                        iframe.autoplay = 1;
+                        iframe.muted = 1;
                         document.getElementById("container").appendChild(section);
                         section.appendChild(dynImg);
 
@@ -1099,6 +551,18 @@ width: 29%;
                         });
                     }               
                     
+
+                    //si es el ultimo valor se agrega el boton volver
+                        //se crea el boton de vuelta
+                    if( numeroParse == cuadrosActuales  && json.region_size == cantidadDeCuatros){
+                        var goback = document.createElement('button');
+                        goback.title = "volver";
+                        goback.value = "volver";
+                        goback.innerHTML = "Volver"
+                        goback.addEventListener('click', reloadPage);
+                        document.body.appendChild(goback);
+                    }
+
                     break;
                 case "userBlocked":
 
@@ -1148,6 +612,7 @@ width: 29%;
                         var containerDiv = document.createElement("div");
                         containerDiv.id = "container";
                         document.body.appendChild(containerDiv);
+                        updateContainerValue(document.getElementById("container"),cantidadDeCuatros);
                         console.log('se actualiza el contenido ')
                         console.log(e)
                         cuadrosActuales = 1;
@@ -1158,10 +623,12 @@ width: 29%;
                         var section = document.createElement('section')
                         // var className = "region_uno_archivo_uno";
                         var className = json.region_size + "_archivo_" + json.numeroDeCuadro;
+                        placeValueInTemplate(section,json.numeroDeCuadro);                        
                         section.className = className;                        
-                        var dynLbl = document.createElement('H5');
+                        var dynLbl = document.createElement('h5');
                         dynLbl.innerHTML  = textValue;
                         dynLbl.className = className + "_data";
+                        placeValueInTemplate(dynLbl,json.numeroDeCuadro);                        
                         document.getElementById("container").appendChild(section);
                         section.appendChild(dynLbl);
 
@@ -1171,14 +638,16 @@ width: 29%;
                         // var className = region_size + "_archivo_" + numeroDeCuadro;
                         var className = json.region_size + "_archivo_" + json.numeroDeCuadro;
                         section.className = className;
+                        placeValueInTemplate(section,json.numeroDeCuadro);                        
 
-                        var dynImg = document.createElement('iframe');
-                        dynImg.className = className + "_data";
-                        dynImg.src = json.archivo_nombre +"?autoplay=1&mute=1&enablejsapi=1";
-                        dynImg.autoplay = 1;
-                        dynImg.muted = 1;
+                        var iframe = document.createElement('iframe');
+                        iframe.className = className + "_data";
+                        placeValueInTemplate(iframe,json.numeroDeCuadro);
+                        iframe.src = json.archivo_nombre +"?autoplay=1&mute=1&enablejsapi=1";
+                        iframe.autoplay = 1;
+                        iframe.muted = 1;
                         document.getElementById("container").appendChild(section);
-                        section.appendChild(dynImg);
+                        section.appendChild(iframe);
 
 
                     }else{
@@ -1190,7 +659,17 @@ width: 29%;
                             console.log(blob.type);
                             updateContentData(blob, url, json.region_size, json.numeroDeCuadro);
                         });
-                    }                        
+                    }                    
+                          //si es el ultimo valor se agrega el boton volver
+                        //se crea el boton de vuelta
+                        if( numeroParse == cuadrosActuales  && json.region_size == cantidadDeCuatros){
+                        var goback = document.createElement('button');
+                        goback.title = "volver";
+                        goback.value = "volver";
+                        goback.innerHTML = "Volver"
+                        goback.addEventListener('click', reloadPage);
+                        document.body.appendChild(goback);
+                    }    
                     break;
                 case "notifyChangeDisplayName":          
                     console.log("el cambio es el siguiente");
@@ -1202,38 +681,100 @@ width: 29%;
 
 
     function updateContentData(blob, url, region_size, numeroDeCuadro) {
+
+        var section = document.createElement('section')
+                var className = region_size + "_archivo_" + numeroDeCuadro;
+                section.className += className;    
+                // section.className += " card card-tall card-wide right_text"                    
+                //voy a preguntar si existen otros elementos predecesores, en caso de ser asi voy a ver si es el primer, segundo, tercer o cuarto elemento que ingresa
+                placeValueInTemplate(section,numeroDeCuadro);
         switch (blob.type) {
-            case "image/jpeg":
-                var section = document.createElement('section')
-                var className = region_size + "_archivo_" + numeroDeCuadro;
-                section.className = className;
+            case "image/jpeg":                
                 var dynImg = new Image();
                 dynImg.className = className + "_data";
                 dynImg.src = url;
+
+                // if(numeroDeCuadro ==="uno"){                            
+                //     dynImg.className +=  " card dato_uno"                    
+                // }
+                // if (numeroDeCuadro === "dos"){
+                //     dynImg.className += " card dato_dos"                    
+                // }
+                // if (numeroDeCuadro === "tres"){
+                //     dynImg.className += " card dato_tres"                    
+                // }
+                // if (numeroDeCuadro === "cuatro"){
+                //     dynImg.className += " card dato_cuatro"                    
+                // } 
+                placeValueInTemplate(dynImg,numeroDeCuadro)
                 document.getElementById("container").appendChild(section);
                 section.appendChild(dynImg);
                 break;
-            case "image/png":
-                var section = document.createElement('section')
-                var className = region_size + "_archivo_" + numeroDeCuadro;
-                section.className = className;
+            case "image/png":          
                 var dynImg = new Image();
                 dynImg.className = className + "_data";
                 dynImg.src = url;
+                // if(numeroDeCuadro ==="uno"){                            
+                //     dynImg.className += " card card-tall card-wide right_text"                    
+                // }
+                // if (numeroDeCuadro === "dos"){
+                //     dynImg.className += " card card-wide right_text"                    
+                // }
+                // if (numeroDeCuadro === "tres"){
+                //     dynImg.className += " card card-wide right_text"                    
+                // }
+                // if (numeroDeCuadro === "cuatro"){
+                //     dynImg.className += " card card-wide right_text"                    
+                // }
+                placeValueInTemplate();
+                // if(numeroDeCuadro ==="uno"){                            
+                //     dynImg.className +=  " card dato_uno"                    
+                // }
+                // if (numeroDeCuadro === "dos"){
+                //     dynImg.className += " card dato_dos"                    
+                // }
+                // if (numeroDeCuadro === "tres"){
+                //     dynImg.className += " card dato_tres"                    
+                // }
+                // if (numeroDeCuadro === "cuatro"){
+                //     dynImg.className += " card dato_cuatro"                    
+                // } 
+                placeValueInTemplate(dynImg,numeroDeCuadro);
                 document.getElementById("container").appendChild(section);
                 section.appendChild(dynImg);
                 break;
-            case "video/mp4":
-                var section = document.createElement('section')
-                // var className = "region_uno_archivo_uno";
-                var className = region_size + "_archivo_" + numeroDeCuadro;
-                section.className = className;
+            case "video/mp4":           
                 var video = document.createElement('video');
                 video.src = url;
                 video.type = blob.type;
                 video.muted = "muted";
                 video.autoplay = true;
                 video.className = className + "_data";
+                // if(numeroDeCuadro ==="uno"){                            
+                //     video.className += " card card-tall card-wide right_text"                    
+                // }
+                // if (numeroDeCuadro === "dos"){
+                //     video.className += " card card-wide right_text"                    
+                // }
+                // if (numeroDeCuadro === "tres"){
+                //     video.className += " card card-wide right_text"                    
+                // }
+                // if (numeroDeCuadro === "cuatro"){
+                //     video.className += " card card-wide right_text"                    
+                // }
+                // if(numeroDeCuadro ==="uno"){                            
+                //     video.className +=  " card dato_uno"                    
+                // }
+                // if (numeroDeCuadro === "dos"){
+                //     video.className += " card dato_dos"                    
+                // }
+                // if (numeroDeCuadro === "tres"){
+                //     video.className += " card dato_tres"                    
+                // }
+                // if (numeroDeCuadro === "cuatro"){
+                //     video.className += " card dato_cuatro"                    
+                // }
+                placeValueInTemplate(video,numeroDeCuadro);
                 video.src = url;
                 document.getElementById("container").appendChild(section);
                 section.appendChild(video);
@@ -1242,7 +783,51 @@ width: 29%;
         }
 
     }
+    var myVar = setInterval(checkFontSize,10000);    
+    function checkFontSize(){        
+            document.querySelectorAll("h5").forEach($quote =>{            
+            var $numWords = $quote.innerHTML.split(" ").length;        
+            if (($numWords >= 1) && ($numWords < 10)) {
+                $quote.style["font-size"]= "50px";
+            }
+            else if (($numWords >= 10) && ($numWords < 20)) {
+                $quote.style["font-size"]= "32px";
+            }
+            else if (($numWords >= 20) && ($numWords < 30)) {
+                $quote.style["font-size"]= "28px";
+            }
+            else if (($numWords >= 30) && ($numWords < 40)) {
+                $quote.style["font-size"]= "24px";
+            }
+            else {
+                $quote.style["font-size"]= "20px";
+            }      
+        })
+    }
+    function placeValueInTemplate(value, numeroDeCuadro){
 
+        if(numeroDeCuadro ==="uno"){                            
+            value.className += " card dato_uno"                    
+        }
+        if (numeroDeCuadro === "dos"){
+            value.className += " card dato_dos"                    
+        }
+        if (numeroDeCuadro === "tres"){
+            value.className += " card dato_tres"                    
+        }
+        if (numeroDeCuadro === "cuatro"){
+            value.className += " card dato_cuatro"                    
+        }
+    }
+    function updateContainerValue(container, response){
+        if(response == "region_cuatro"){
+            container.classList.add("display_cuatro_template");
+        }else if(response == "region_tres"){
+            container.classList.add("display_tres_template");
+        }else if(response == "region_uno"){
+            container.classList.add("display_uno_template");
+        }
+    }
 </script>
 
 

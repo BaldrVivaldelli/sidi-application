@@ -7,6 +7,7 @@ use App\Regions;
 use DB; 
 use Carbon\Carbon;
 use Log;
+use Illuminate\Support\Str;
 
 class DispositivosController extends Controller
 {
@@ -178,10 +179,19 @@ class DispositivosController extends Controller
 
     }
    
-    public function updateName(Request $request){
+    public function updateName(Request $request){        
         Log::info('llego un cambio de nombre '. $request["displayNewName"]);
-        Log::info('el cliente original es el siguiente  '.$request["displayOriginalName"]);
-        
+        Log::info("estoy haciendo un substring de esto ". substr($request['displayNewName'], 0, 1));
+        if( (Str::contains(strtolower($request['displayNewName']), "<script>"))       || 
+            (Str::contains(strtolower($request['displayNewName']), "select * from"))  ||
+            (Str::contains(strtolower($request['displayNewName']), "drop down"))      ||            
+            ($request['displayNewName'] == null )            ) {
+
+                return [
+                    'status' => "error",
+                    'desc' => "Datos invalidos"
+                ];
+        }
         $aux = DB::table('clientes')->where('nombreDispositivo',$request["displayNewName"])->first();        
         if($aux === null){        
             Log::info('el cliente original es el siguiente  '.$aux);

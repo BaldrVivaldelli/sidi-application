@@ -155,7 +155,7 @@ class RatchetController extends Controller implements MessageComponentInterface
                         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                     ]);
                 }else{          
-                    if($isConected == 0){
+                    if($isConected === 0){
                         //aca existe un nombre asignado ya al dispositivo, solo se actualiza el id de coneccion
                         $this->users[$from->resourceId] = $from;
                         DB::table('clientes')->insert([
@@ -177,7 +177,6 @@ class RatchetController extends Controller implements MessageComponentInterface
                             ]);
                     }          
                 }
-
 
                 $formato_template = $contenido->formato_template;
                 switch ($formato_template) {
